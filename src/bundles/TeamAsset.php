@@ -9,14 +9,14 @@ use yii\web\AssetBundle;
  */
 class TeamAsset extends AssetBundle
 {
-    public $sourcePath = '@hesabro/hris/assets';
+    public $sourcePath = '@hesabro/trello/assets';
 
     public $css = [
         'iranSans/css/fontiran.css',
         'team/css/style.css',
         'team/css/bootstrap-rtl.css',
         'team/css/theme.css',
-        'admin/font-awesome/css/font-awesome.css',
+        'font-awesome/css/font-awesome.css',
     ];
 
     public $js = [

@@ -17,7 +17,7 @@ class AppAsset extends AssetBundle
         //'css/bootstrap-combined.min.css',
         'css/bootstrap-editable.css',
         'css/jquery-ui.css',
-        'css/font-awesome/css/font-awesome.css',
+        'font-awesome/css/font-awesome.css',
         'css/animate.min.css',
     ];
 
