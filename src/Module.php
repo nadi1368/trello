@@ -1,13 +1,13 @@
 <?php
 
-namespace backend\modules\trello;
+namespace hesabro\trello;
 
 
 use Yii;
 /**
  * trello module definition class
  */
-class module extends \yii\base\Module
+class Module extends \yii\base\Module
 {
     /**
      * @inheritdoc
