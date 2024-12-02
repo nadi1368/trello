@@ -1,0 +1,1 @@
+<span class="card-label <?= 'card-label-'.$label->color_code; ?> mod-card-front" data-label-id="<?= $label->id ?>" title="<?= $label->label_name; ?>"><?= $label->label_name; ?></span>
