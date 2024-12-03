@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use hesabro\trello\Module;
 ?>
 <div class="list-group without-border  rtl">
     <?php if($members): ?>
@@ -9,6 +10,6 @@ use yii\helpers\Url;
         </a>
         <?php endforeach; ?>
     <?php else: ?>
-        <p class="text-warning"><?= Yii::t("app","Not Result") ?></p>
+        <p class="text-warning"><?= Module::t("module","Not Result") ?></p>
     <?php endif; ?>
 </div>

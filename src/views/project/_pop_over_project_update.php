@@ -3,10 +3,12 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use hesabro\trello\models\Project;
 use hesabro\trello\models\TaskLabel;
+use hesabro\trello\Module;
+
 $colors=TaskLabel::itemAlias('Color');
 ?>
 <div class="pop-over-header js-pop-over-header">
-    <span class="pop-over-header-title"><?= Yii::t("app","Menu") ?></span>
+    <span class="pop-over-header-title"><?= Module::t("module","Menu") ?></span>
     <a href="#" class="pop-over-header-close-btn" onclick="return closePopOver(this);"><i class="fa fa-times"></i> </a>
     <a href="#" class="pop-over-header-back-btn" onclick="return backMenu(this);">
         <i class="fa fa-long-arrow-left"></i>
@@ -15,7 +17,7 @@ $colors=TaskLabel::itemAlias('Color');
 <div class="pop-over-content"  id="update-project-form">
 
     <div class="form-input">
-        <input type="tex" id="title-board-input" value="<?= $project->project_name; ?>" class="form-control rtl" placeholder="<?= Yii::t("app","Board Title") ?>">
+        <input type="tex" id="title-board-input" value="<?= $project->project_name; ?>" class="form-control rtl" placeholder="<?= Module::t("module","Board Title") ?>">
     </div>
 
     <div class="clearfix"></div>
@@ -47,8 +49,8 @@ $colors=TaskLabel::itemAlias('Color');
 
     <div class="clearfix"></div>
 
-    <p class="text-danger fade-out rtl" id="msg-board-input"><?= Yii::t("app","Please Fill Form") ?></p>
+    <p class="text-danger fade-out rtl" id="msg-board-input"><?= Module::t("module","Please Fill Form") ?></p>
     <hr/>
-    <a class="button button-success button-inline" data-ajax-url="<?= Url::to(['project/update', 'id' => $project->id]) ?>" onclick="return updateProject(this);"><?= Yii::t("app","Save") ?></a>
+    <a class="button button-success button-inline" data-ajax-url="<?= Url::to(['project/update', 'id' => $project->id]) ?>" onclick="return updateProject(this);"><?= Module::t("module","Save") ?></a>
     <div class="clearfix"></div>
 </div>

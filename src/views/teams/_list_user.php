@@ -2,17 +2,19 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use hesabro\trello\models\TeamUsers;
-$this->title=$model->title_team;
+use hesabro\trello\Module;
 
+$this->title=$model->title_team;
 ?>
+
 <table class="table table-border">
     <thead>
     <tr>
         <th></th>
-        <th><?= Yii::t("app","User Name")?></th>
-        <th><?= Yii::t("app","Full Name")?></th>
-        <th><?= Yii::t("app","Email")?></th>
-        <th><?= Yii::t("app","Role") ?></th>
+        <th><?= Module::t("module","User Name")?></th>
+        <th><?= Module::t("module","Full Name")?></th>
+        <th><?= Module::t("module","Email")?></th>
+        <th><?= Module::t("module","Role") ?></th>
         <th></th>
     </tr>
     </thead>
@@ -32,7 +34,7 @@ $this->title=$model->title_team;
             </td>
             <td>
                 <?php if($team_user->is_creator==TeamUsers::NO): ?>
-                    <a href="#" class="btn btn-danger btn-xs btn-flat" title="<?= Yii::t("app","Delete This User From Team") ?>" data-ajax-url="<?= Url::to(['teams/delete-user', 'team_id'=>$model->id, 'teamUser_id'=>$team_user->id]); ?>" onclick="return DeleteUser(this);"><span class="glyphicon glyphicon-remove"></span> </a>
+                    <a href="#" class="btn btn-danger btn-xs btn-flat" title="<?= Module::t("module","Delete This User From Team") ?>" data-ajax-url="<?= Url::to(['teams/delete-user', 'team_id'=>$model->id, 'teamUser_id'=>$team_user->id]); ?>" onclick="return DeleteUser(this);"><span class="glyphicon glyphicon-remove"></span> </a>
                 <?php endif; ?>
             </td>
         </tr>
