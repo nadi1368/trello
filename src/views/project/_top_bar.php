@@ -1,8 +1,9 @@
 <?php
 use yii\widgets\Breadcrumbs;
+use hesabro\trello\Module;
 
 $this->title = $project->project_name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t("app","Projects"), 'url' => ['default/index']];
+$this->params['breadcrumbs'][] = ['label' => Module::t("module","Projects"), 'url' => ['default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="rtl">

@@ -4,6 +4,7 @@ namespace hesabro\trello\models;
 
 use Yii;
 use common\models\User;
+use hesabro\trello\Module;
 
 /**
  * This is the model class for table "tbl_project".
@@ -213,11 +214,11 @@ class Project extends \yii\db\ActiveRecord
 
         $_items = [
             'ShowStatus'=>[
-                self::SHOW_PRIVATE=>Yii::t("app","Private Board"),
-                self::SHOW_PUBLIC=>Yii::t("app","Public Board")
+                self::SHOW_PRIVATE=>Module::t("module", "Private Board"),
+                self::SHOW_PUBLIC=>Module::t("module", "Public Board")
             ],
-
         ];
+        
         if (isset($code))
             return isset($_items[$type][$code]) ? $_items[$type][$code] : false;
         else

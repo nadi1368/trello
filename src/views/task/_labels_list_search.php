@@ -1,7 +1,9 @@
 <?php
 use yii\helpers\Url;
 use hesabro\trello\models\TaskLabel;
+use hesabro\trello\Module;
 ?>
+
 <div class="list-group without-border rtl">
     <?php if($labels): ?>
         <?php foreach($labels as $label): ?>
@@ -17,6 +19,6 @@ use hesabro\trello\models\TaskLabel;
             </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <p class="text-warning"><?= Yii::t("app","Not Result") ?></p>
+        <p class="text-warning"><?= Module::t("module","Not Result") ?></p>
     <?php endif; ?>
 </div>

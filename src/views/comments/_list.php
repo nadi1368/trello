@@ -1,9 +1,10 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
+use hesabro\trello\Module;
 ?>
 <?php if($comments): ?>
-    <h5><i class="fa fa-comments"></i> <?= Yii::t("app","Comments") ?></h5>
+    <h5><i class="fa fa-comments"></i> <?= Module::t("module","Comments") ?></h5>
 
         <?php foreach($comments as $comment): ?>
             <div class="panel-comment">
@@ -21,8 +22,8 @@ use yii\helpers\Html;
         <?php endforeach; ?>
 <?php endif; ?>
 <div class="new-comment rtl">
-    <h5><i class="fa fa-comment"></i> <?= Yii::t("app","Add Comment") ?></h5>
+    <h5><i class="fa fa-comment"></i> <?= Module::t("module","Add Comment") ?></h5>
     <textarea class="form-control rtl comment-box-input js-new-comment-input" placeholder="Write a comment…" tabindex="1" dir="auto" id="title-comment-input" style="overflow: hidden; word-wrap: break-word; height: 75px;resize:none;word-wrap:break-word;"></textarea>
-    <p class="text-danger fade-out rtl" id="msg-comments-input"><?= Yii::t("app","Please Fill Form") ?></p>
-    <a href="#" class="button button-success button-inline" data-ajax-url="<?= Url::to(['comments/create', 'id' => $model->id]) ?>" onclick="return createComments(this);"><?= Yii::t("app","Save") ?></a>
+    <p class="text-danger fade-out rtl" id="msg-comments-input"><?= Module::t("module","Please Fill Form") ?></p>
+    <a href="#" class="button button-success button-inline" data-ajax-url="<?= Url::to(['comments/create', 'id' => $model->id]) ?>" onclick="return createComments(this);"><?= Module::t("module","Save") ?></a>
 </div>
