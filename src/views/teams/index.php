@@ -1,9 +1,11 @@
 <?php
+use hesabro\trello\Module;
 use yii\helpers\Html;
 use yii\helpers\Url;
-$this->title=$model->title_team;
 
+$this->title=$model->title_team;
 ?>
+
 <?= $this->render('_menu', [
     'model' => $model,
     'project' => $project,
@@ -15,11 +17,11 @@ $this->title=$model->title_team;
         <div class="views">
             <h3>
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"> </span>
-                <?= Yii::t("app","Add New User") ?>
+                <?= Module::t("module","Add New User") ?>
             </h3>
         </div>
         <div class="search-box">
-            <input type="text" class="form-control" id="serac-user-input" placeholder="<?= Yii::t("app","Search User"); ?>" data-ajax-url="<?= Url::to(['teams/search-user', 'team_id'=>$model->id]); ?>">
+            <input type="text" class="form-control" id="serac-user-input" placeholder="<?= Module::t("module","Search User"); ?>" data-ajax-url="<?= Url::to(['teams/search-user', 'team_id'=>$model->id]); ?>">
         </div>
         <div id="result-search-user">
             <?= $this->render('_add_user', [
@@ -35,7 +37,7 @@ $this->title=$model->title_team;
         <div class="views">
             <h3>
                 <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
-                <?= Yii::t("app","Users") ?></h3>
+                <?= Module::t("module","Users") ?></h3>
         </div>
         <div id="result-list-user">
             <?= $this->render('_list_user', [

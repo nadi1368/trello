@@ -1,6 +1,8 @@
 <?php
+use hesabro\trello\Module;
 use yii\helpers\Url;
 use yii\helpers\Html;
+
 $attachments=$model->getAttachments()->active()->orderBy('id DESC')->all();
 ?>
 <?php if($attachments): ?>
@@ -26,9 +28,9 @@ $attachments=$model->getAttachments()->active()->orderBy('id DESC')->all();
                     <span class="attachment-thumbnail-name"><?= $attach->base_name; ?></span>
                 </div>
                 <div class="attachment-btn">
-                    <a href="<?= $attach->getUploadDir().$attach->attach ?>" target="_blank"><i class="fa fa-download"></i> <?= Yii::t("app","Download") ?></a>
+                    <a href="<?= $attach->getUploadDir().$attach->attach ?>" target="_blank"><i class="fa fa-download"></i> <?= Module::t("module","Download") ?></a>
                      <span> / </span>
-                    <a href="#" data-ajax-url="<?= Url::to(['attach/delete', 'id'=>$attach->id]) ?>" onclick="return deleteAttach(this);"><i class="fa fa-times"></i> <?= Yii::t("app","Delete") ?></a>
+                    <a href="#" data-ajax-url="<?= Url::to(['attach/delete', 'id'=>$attach->id]) ?>" onclick="return deleteAttach(this);"><i class="fa fa-times"></i> <?= Module::t("module","Delete") ?></a>
                 </div>
                 <ul class="attachment-footer">
                     <li><i class="fa fa-user"></i> <?= Html::encode($attach->creator->fullName) ?></li>
