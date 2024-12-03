@@ -1,8 +1,10 @@
 <?php
 use yii\helpers\Url;
+use hesabro\trello\Module;
 ?>
+
 <div class="pop-over-header js-pop-over-header">
-    <span class="pop-over-header-title"><?= Yii::t("app", "Create Labels") ?></span>
+    <span class="pop-over-header-title"><?= Module::t("module", "Create Labels") ?></span>
     <a href="#" class="pop-over-header-close-btn" onclick="return closePopOver(this);">
         <i class="fa fa-times"></i>
     </a>
@@ -16,6 +18,6 @@ use yii\helpers\Url;
         <hr/>
         <input type="hidden" id="title-label-input-delete" value="">
         <input type="hidden" id="id-label-input-delete" value="">
-        <a class="button button-danger text-center"  data-ajax-url="<?= Url::to(['label/delete', 'id' => $model->id]) ?>"  onclick="return deleteLabel(this);"><?= Yii::t("app","Delete") ?></a>
+        <a class="button button-danger text-center"  data-ajax-url="<?= Url::to(['label/delete', 'id' => $model->id]) ?>"  onclick="return deleteLabel(this);"><?= Module::t("module","Delete") ?></a>
     </div>
 </div>

@@ -1,7 +1,9 @@
 <?php
+use hesabro\trello\Module;
 use yii\helpers\Url;
 use hesabro\trello\models\TaskAssignment;
 ?>
+
 <div class="list-group without-border  rtl">
     <?php if($members): ?>
         <?php foreach($members as $member): ?>
@@ -12,6 +14,6 @@ use hesabro\trello\models\TaskAssignment;
         </a>
         <?php endforeach; ?>
     <?php else: ?>
-        <p class="text-warning"><?= Yii::t("app","Not Result") ?></p>
+        <p class="text-warning"><?= Module::t("module","Not Result") ?></p>
     <?php endif; ?>
 </div>
