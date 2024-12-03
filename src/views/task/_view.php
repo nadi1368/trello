@@ -7,6 +7,31 @@ use hesabro\trello\models\TaskWatches;
 $watch = TaskWatches::find()->findByTask($model->id)->findByCreator(Yii::$app->user->id)->One();
 $check_list = $model->getCheckLists()->active()->one();
 ?>
+
+<style>
+    .form-inline {
+        display: block !important;
+    }
+
+    .editable-input {
+        display: block !important;
+    }
+
+    #task-view .editable-input {
+        width: 100% !important;
+    }
+
+    .editable-buttons {
+        margin: 0;
+        display: flex;
+        justify-content: end;
+    }
+
+    #task-view .input-medium, #task-view .input-large {
+        width: 100% !important;
+    }
+</style>
+
 <div class="modal fadeIn bs-example-modal-lg" tabindex="-1" role="dialog" id="dialog" aria-labelledby="task-title">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

@@ -282,7 +282,7 @@ function updateTask()
             if(response.status === 500) {
                 return 'Service unavailable. Please try later.';
             } else {
-                return 'Errorr save Info';
+                return 'Error save Info';
             }
         },
     });
