@@ -262,9 +262,9 @@ a:focus, a:hover, a:active {
 }
 
 .list-created > * {
-    background-color: #e2e4e6;
+    background-color: #d9e5f5;
     color: #333;
-    padding: 0 10px;
+    padding: 10px 15px;
 }
 
 .list header {
@@ -273,11 +273,15 @@ a:focus, a:hover, a:active {
     font-size: 16px;
     font-weight: bold;
     position: relative;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
 .list footer {
     line-height: 36px;
     color: #888;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 
 .list ul.connectedSortable {
@@ -294,6 +298,7 @@ a:focus, a:hover, a:active {
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    border-radius: 6px;
 }
 
 .list ul.connectedSortable li:not(:last-child) {
