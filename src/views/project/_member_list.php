@@ -1,5 +1,23 @@
+<?php
+$css = <<<CSS
+    .c-badge {
+        display: inline-block;
+        margin: 0 4px 4px 0;
+        max-width: 100%;
+        min-height: 18px;
+        overflow: hidden;
+        position: relative;
+        padding: 1px 2px;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        border-radius: 6px;        
+    }
+CSS;
+$this->registerCSS($css);
+?>
+
 <?php foreach($select_members as $member): ?>
-    <label class="badge badge-info" title="<?= $member->user->first_name.' '.$member->user->last_name; ?>">
+    <label class="c-badge badge-info" title="<?= $member->user->first_name.' '.$member->user->last_name; ?>">
         <?= $member->user->first_name.' '.$member->user->last_name; ?>
     </label>
 <?php endforeach; ?>
