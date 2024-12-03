@@ -323,7 +323,6 @@ a:focus, a:hover, a:active {
 }
 
 .badge {
-    color: #838c91 !important;
     display: inline-block;
     margin: 0 4px 4px 0;
     max-width: 100%;
@@ -498,6 +497,7 @@ Member AND Label Popover
     margin: 2px 0 2px 2px;
     float: right;
     padding: 8px 15px;
+    color: #ffffff;
 }
 
 .without-border {

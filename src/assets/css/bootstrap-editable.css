@@ -847,3 +847,26 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .icon-filter{background-position:-408px -144px;}
 .icon-briefcase{background-position:-432px -144px;}
 .icon-fullscreen{background-position:-456px -144px;}
+
+
+.form-inline {
+    display: block !important;
+}
+
+.editable-input {
+    display: block !important;
+}
+
+#task-view .editable-input {
+    width: 100% !important;
+}
+
+.editable-buttons {
+    margin: 0;
+    display: flex;
+    justify-content: end;
+}
+
+#task-view .input-medium, #task-view .input-large {
+    width: 100% !important;
+}
