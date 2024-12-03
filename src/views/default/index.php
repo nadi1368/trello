@@ -1,14 +1,13 @@
 <?php
+use hesabro\trello\Module;
 
-use yii\helpers\Html;
-use yii\helpers\Url;
-
-$this->title=Yii::t("app","Boards");
+$this->title = Module::t("module", "Boards");
 ?>
+
 <?= $this->render('_board', [
-    'projects'=>$projects
+    'projects' => $projects
 ]) ?>
 
 <?= $this->render('_team', [
-    'teams'=>$teams,
+    'teams' => $teams,
 ]) ?>

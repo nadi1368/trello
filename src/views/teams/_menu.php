@@ -1,6 +1,8 @@
 <?php
 use common\components\Menu;
+use hesabro\trello\Module;
 ?>
+
 <div class="header-main1">
     <div class=" header-right1">
         <div class="top-nav">
@@ -20,7 +22,7 @@ use common\components\Menu;
                             'options' => ['class' => 'nav navbar-nav'],
                             'encodeLabels'=>FALSE,
                             'items' => [
-                                ['label' => Yii::t("app","Boards"), 'icon'=>'fa fa-dashboard', 'url' => ['default/index']],
+                                ['label' => Module::t("module","Boards"), 'icon'=>'fa fa-dashboard', 'url' => ['default/index']],
                                 ['label' => $project ? $project->project_name : '', 'icon'=>'fa fa-dashboard','visible' => $project, 'url' => ['project/index','p_id'=>$project ? $project->id : 0]],
                                 ['label' => $model->title_team, 'icon'=>'fa fa-drivers-license', 'url' => ['teams/index']],
                             ]

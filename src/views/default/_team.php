@@ -1,11 +1,13 @@
 <?php
 use yii\helpers\Html;
 use hesabro\trello\models\TaskLabel;
-$colors=TaskLabel::itemAlias('Color');
+use hesabro\trello\Module;
 
+$colors = TaskLabel::itemAlias('Color');
 ?>
+
 <div class="title">
-    <h3><?= Yii::t("app","Teams") ?></h3>
+    <h3><?= Module::t("module","Teams") ?></h3>
 </div>
 <?php foreach($teams as $team): ?>
     <div class="col-md-3">
@@ -15,7 +17,7 @@ $colors=TaskLabel::itemAlias('Color');
 <div class="col-md-3 pull-left">
     <div class="content-cal1">
         <div class="avari-info">
-            <h2><a href="#" data-toggle="modal" data-target="#createTeamModal"><?= Yii::t("app","Create New Team"); ?></a> </h2>
+            <h2><a href="#" data-toggle="modal" data-target="#createTeamModal"><?= Module::t("module","Create New Team"); ?></a> </h2>
         </div>
     </div>
 </div>

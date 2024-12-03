@@ -1,12 +1,12 @@
 <?php
-
 use yii\helpers\Url;
 use hesabro\trello\models\TaskLabel;
-$colors=TaskLabel::itemAlias('Color');
+use hesabro\trello\Module;
 
+$colors=TaskLabel::itemAlias('Color');
 ?>
 <div class="pop-over-header js-pop-over-header">
-    <span class="pop-over-header-title"><?= Yii::t("app", "Create Labels") ?></span>
+    <span class="pop-over-header-title"><?= Module::t("module", "Create Labels") ?></span>
     <a href="#" class="pop-over-header-close-btn" onclick="return closePopOver(this);">
         <i class="fa fa-times"></i>
     </a>
@@ -15,10 +15,10 @@ $colors=TaskLabel::itemAlias('Color');
     </a>
 </div>
 <div class="pop-over-content" id="update-label-form">
-    <input type="tex" id="title-label-input-update"  class="form-control rtl" placeholder="<?= Yii::t("app","Label Title") ?>">
+    <input type="tex" id="title-label-input-update"  class="form-control rtl" placeholder="<?= Module::t("module","Label Title") ?>">
 
-    <p class="text-danger fade-out rtl" id="msg-label-input-update"><?= Yii::t("app","Please Fill Form") ?></p>
-    <h5><?= Yii::t("app","Select Color") ?></h5>
+    <p class="text-danger fade-out rtl" id="msg-label-input-update"><?= Module::t("module","Please Fill Form") ?></p>
+    <h5><?= Module::t("module","Select Color") ?></h5>
     <?php
     foreach($colors as $title=>$css_class):
         ?>
@@ -31,8 +31,8 @@ $colors=TaskLabel::itemAlias('Color');
 
     <div class="clearfix"></div>
     <hr/>
-    <a class="button button-success button-inline" data-ajax-url="<?= Url::to(['label/update', 'id' => $model->id]) ?>" onclick="return updateLabel(this);"><?= Yii::t("app","Update") ?></a>
-    <a class="button button-danger button-inline pull-right"  onclick="return showDeleteLabelForm(this);"><?= Yii::t("app","Delete") ?></a>
+    <a class="button button-success button-inline" data-ajax-url="<?= Url::to(['label/update', 'id' => $model->id]) ?>" onclick="return updateLabel(this);"><?= Module::t("module","Update") ?></a>
+    <a class="button button-danger button-inline pull-right"  onclick="return showDeleteLabelForm(this);"><?= Module::t("module","Delete") ?></a>
 
     <div class="clearfix"></div>
 </div>

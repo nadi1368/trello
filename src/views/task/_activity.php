@@ -1,9 +1,11 @@
 <?php
-    use yii\helpers\Html;
-    $activities=$model->getTaskLogs()->all();
+use yii\helpers\Html;
+use hesabro\trello\Module;
+$activities=$model->getTaskLogs()->all();
 ?>
+
 <?php if($activities): ?>
-    <h5><i class="fa fa-exchange"></i> <?= Yii::t("app","Activity"); ?></h5>
+    <h5><i class="fa fa-exchange"></i> <?= Module::t("module","Activity"); ?></h5>
     <?php foreach($activities as $log): ?>
         <div class="panel-comment">
             <div class="comment-body">
