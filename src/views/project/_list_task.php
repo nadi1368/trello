@@ -5,6 +5,7 @@ use hesabro\trello\models\TaskAssignment;
 use hesabro\trello\models\TaskWatches;
 use hesabro\trello\models\TaskLabel;
 use hesabro\trello\models\Comments;
+use hesabro\trello\Module;
 ?>
 <?php foreach($status->getProjectTasks()->active()->orderBy('t_order')->all() as $index=>$model): ?>
 <li class="task"  id="<?= 'task_'.$model->id; ?>" data-index="<?= $index; ?>" data-ajax-url-move="<?= Url::to(['task/move', 'id'=>$model->id]) ?>" data-ajax-receive-url="<?= Url::to(['task/receive', 'id'=>$model->id]) ?>" data-ajax-url-view="<?= Url::to(['task/view', 'id'=>$model->id]) ?>">
@@ -35,19 +36,19 @@ use hesabro\trello\models\Comments;
 
             <?php
                 $watch=TaskWatches::find()->findByTask($model->id)->findByCreator(Yii::$app->user->id)->One();
-                echo $watch ? '<span><i class="fa fa-eye" title="'.Yii::t("app","You are watching this card.").'"></i></span>' : '';
+                echo $watch ? '<span><i class="fa fa-eye" title="'.Module::t("module","You are watching this card.").'"></i></span>' : '';
             ?>
             <?php
                 $count_comment=Comments::find()->findByTask($model->id)->count();
-                echo $count_comment>0 ? '<span title="'.Yii::t("app","Comments").'">'.$count_comment.' <i class="fa fa-comments"></i> </span> ' : '';
+                echo $count_comment>0 ? '<span title="'.Module::t("module","Comments").'">'.$count_comment.' <i class="fa fa-comments"></i> </span> ' : '';
             ?>
             <?php
-                echo $model->desc_task ? '<span><i class="fa fa-list" title="'.Yii::t("app","This card has a description.").'"></i></span>' : '';
+                echo $model->desc_task ? '<span><i class="fa fa-list" title="'.Module::t("module","This card has a description.").'"></i></span>' : '';
             ?>
 
             <?php
                 $count_attach=$model->getAttachments()->active()->count();
-                echo $count_attach>0 ? '<span title="'.Yii::t("app","Attachments").'">'.$count_attach.' <i class="fa fa-paperclip"></i> </span> ' : '';
+                echo $count_attach>0 ? '<span title="'.Module::t("module","Attachments").'">'.$count_attach.' <i class="fa fa-paperclip"></i> </span> ' : '';
             ?>
         </div>
         <div class="list-card-members">

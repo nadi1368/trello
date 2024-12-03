@@ -4,20 +4,23 @@ use yii\helpers\Html;
 use hesabro\trello\models\Project;
 use hesabro\trello\models\Team;
 use hesabro\trello\models\TaskLabel;
+use hesabro\trello\Module;
+
 $colors=TaskLabel::itemAlias('Color');
 ?>
+
 <div class="modal fade" id="createBoardModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?= Yii::t("app","Create New Board") ?></h4>
+                <h4 class="modal-title" id="myModalLabel"><?= Module::t("module", "Create New Board") ?></h4>
             </div>
             <div class="modal-body">
                 <div class="row rtl">
                     <div class="col-md-12">
                         <div class="form-input">
-                            <input type="tex" id="title-board-input" class="form-control rtl" placeholder="<?= Yii::t("app","Board Title") ?>">
+                            <input type="text" id="title-board-input" class="form-control rtl" placeholder="<?= Module::t("module", "Board Title") ?>">
                         </div>
                     </div>
 
@@ -59,14 +62,15 @@ $colors=TaskLabel::itemAlias('Color');
                         <input type="hidden" id="color-board-input" value="<?= $input_value ?>">
                     </div>
                     <div class="clearfix"></div>
-                        <div class="col-md-12">
-                            <p class="text-danger fade-out rtl" id="msg-board-input"><?= Yii::t("app","Please Fill Form") ?></p>
-                        </div>
+                    <div class="col-md-12">
+                        <p class="text-danger fade-out rtl" id="msg-board-input"><?= Module::t("module", "Please Fill Form") ?></p>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-flat" data-ajax-url="<?= Url::to(['project/create']) ?>" onclick="return createBoard(this);"><?= Yii::t("app","Create"); ?></button>
-
+                <button type="button" class="btn btn-success btn-flat" data-ajax-url="<?= Url::to(['project/create']) ?>" onclick="return createBoard(this);">
+                    <?= Module::t("module", "Create"); ?>
+                </button>
             </div>
         </div>
     </div>

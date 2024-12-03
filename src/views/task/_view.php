@@ -1,12 +1,13 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use hesabro\trello\models\TaskWatches;
+use hesabro\trello\Module;
 
 $watch = TaskWatches::find()->findByTask($model->id)->findByCreator(Yii::$app->user->id)->One();
 $check_list = $model->getCheckLists()->active()->one();
 ?>
+
 <div class="modal fadeIn bs-example-modal-lg" tabindex="-1" role="dialog" id="dialog" aria-labelledby="task-title">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -17,7 +18,7 @@ $check_list = $model->getCheckLists()->active()->one();
                     <a id="task-title" data-type="text" data-pk="<?= $model->id; ?>"
                        data-url="<?= Url::to(['task/update', 'id' => $model->id, 'type' => 'title']); ?>"
                        data-placement="right"
-                       data-title="<?= Yii::t("app", "Update Title") ?>"><?= Html::encode($model->title_task); ?></a>
+                       data-title="<?= Module::t("module", "Update Title") ?>"><?= Html::encode($model->title_task); ?></a>
                 </h4>
             </div>
             <div class="modal-body">
@@ -27,36 +28,36 @@ $check_list = $model->getCheckLists()->active()->one();
                             <div class="u-clearfix">
                                 <a class="button button-default js-change-card-members btn-popover" data-title="Members"
                                    onclick="return showPopOver(this);" data-pop-id="#pop-menu-memeber">
-                                    <i class="fa fa-users"></i>&nbsp;<?= Yii::t("app", "Members") ?>
+                                    <i class="fa fa-users"></i>&nbsp;<?= Module::t("module", "Members") ?>
                                 </a>
 
                                 <a class="button button-default js-edit-labels btn-popover" href="#"
                                    onclick="return showPopOver(this);" data-pop-id="#pop-menu-label">
-                                    <i class="fa fa-tags"></i>&nbsp;<?= Yii::t("app", "Labels") ?>
+                                    <i class="fa fa-tags"></i>&nbsp;<?= Module::t("module", "Labels") ?>
                                 </a>
                                 <a class="button button-default js-add-checklist-menu btn-popover" href="#"
                                    onclick="return showPopOver(this);" data-pop-id="#pop-menu-check-list">
-                                    <i class="fa fa-check-square-o"></i>&nbsp;<?= Yii::t("app", "Checklist") ?>
+                                    <i class="fa fa-check-square-o"></i>&nbsp;<?= Module::t("module", "Check List") ?>
                                 </a>
                                 <a class="button button-default js-add-due-date btn-popover" id="popupReturn" href="#"
                                    onclick="return showPopOver(this);" data-pop-id="#pop-menu-dou-date">
-                                    <i class="fa fa-clock-o"></i>&nbsp;<?= Yii::t("app", "DueDate") ?>
+                                    <i class="fa fa-clock-o"></i>&nbsp;<?= Module::t("module", "Due Date") ?>
                                 </a>
                                 <a class="button button-default js-attach btn-popover" href="#"
                                    onclick="return showPopOver(this);" data-pop-id="#pop-menu-attach">
-                                    <i class="fa fa-paperclip"></i>&nbsp;<?= Yii::t("app", "Attachment") ?>
+                                    <i class="fa fa-paperclip"></i>&nbsp;<?= Module::t("module", "Attachment") ?>
                                 </a>
                                 <a class="button <?= $watch ? 'button-success' : 'button-default' ?>  js-attach"
                                    id="btn-watch-task" href="#" data-task-id="<?= '#task_' . $model->id ?>"
                                    data-ajax-url="<?= Url::to(['task/watches', 'id' => $model->id]) ?>"
                                    data-role="<?= $watch ? 'restore' : 'watch' ?>" onclick="return watchesTask(this);">
-                                    <i class="<?= $watch ? 'fa fa-eye-slash' : 'fa fa-eye' ?>"></i>&nbsp; <?= Yii::t("app", "Watch") ?>
+                                    <i class="<?= $watch ? 'fa fa-eye-slash' : 'fa fa-eye' ?>"></i>&nbsp; <?= Module::t("module", "Watch") ?>
                                 </a>
                                 <a class="button button-danger js-attach" id="btn-archive-task" href="#"
                                    data-task-id="<?= '#task_' . $model->id ?>"
                                    data-ajax-url="<?= Url::to(['task/change-status', 'id' => $model->id]) ?>"
                                    data-role="archive" onclick="return archiveTask(this);">
-                                    <i class="fa fa-trash-o"></i>&nbsp; <?= Yii::t("app", "Archive") ?>
+                                    <i class="fa fa-trash-o"></i>&nbsp; <?= Module::t("module", "Archive") ?>
                                 </a>
                             </div>
                         </div>
@@ -79,11 +80,11 @@ $check_list = $model->getCheckLists()->active()->one();
                             <?= $this->render('_member_list', ['select_members' => $select_members, 'model' => $model]); ?>
                         </div>
 
-                        <h5><i class="fa fa-list"></i> <?= Yii::t("app", "Description") ?></h5>
+                        <h5><i class="fa fa-list"></i> <?= Module::t("module", "Description") ?></h5>
                         <p><a id="task-desc" data-type="textarea" data-rows="3" data-pk="<?= $model->id; ?>"
                               data-url="<?= Url::to(['task/update', 'id' => $model->id, 'type' => 'desc']); ?>"
                               data-placement="right"
-                              data-title="<?= Yii::t("app", "Update Description") ?>"><?= Html::encode($model->desc_task); ?></a>
+                              data-title="<?= Module::t("module", "Update Description") ?>"><?= Html::encode($model->desc_task); ?></a>
                         </p>
 
 
