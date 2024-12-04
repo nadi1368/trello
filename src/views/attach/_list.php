@@ -3,7 +3,7 @@ use hesabro\trello\Module;
 use yii\helpers\Url;
 use yii\helpers\Html;
 
-$attachments=$model->getAttachments()->active()->orderBy('id DESC')->all();
+$attachments= $model->getAttachments()->active()->orderBy('id DESC')->all();
 ?>
 <?php if($attachments): ?>
     <h5><i class="fa fa-paperclip"></i> <?= Yii::t("app","Attachments") ?></h5>
@@ -13,12 +13,13 @@ $attachments=$model->getAttachments()->active()->orderBy('id DESC')->all();
             <div class="attachment-thumbnail-preview" >
                 <span class="attachment-thumbnail-preview-ext">
                     <?php
+                            $fileUrl = $attach->getFileUrl('attach');
                             if($attach->is_image()){
 
-                                echo Html::img($attach->getUploadDir().$attach->attach,['alt'=>$attach->base_name, 'class'=>'img-responsive']);
+                                echo Html::img($fileUrl,['class'=>'img-responsive']);
                             }else
                             {
-                                echo pathinfo($attach->base_name,PATHINFO_EXTENSION);
+                                echo Html::a('دانلود فایل پیوست', $fileUrl, ['data-pjax' => 0, 'class' => 'btn btn-info']);
                             }
                     ?>
                 </span>
@@ -28,7 +29,7 @@ $attachments=$model->getAttachments()->active()->orderBy('id DESC')->all();
                     <span class="attachment-thumbnail-name"><?= $attach->base_name; ?></span>
                 </div>
                 <div class="attachment-btn">
-                    <a href="<?= $attach->getUploadDir().$attach->attach ?>" target="_blank"><i class="fa fa-download"></i> <?= Module::t("module","Download") ?></a>
+                    <a href="<?= $fileUrl ?>" target="_blank"><i class="fa fa-download"></i> <?= Module::t("module","Download") ?></a>
                      <span> / </span>
                     <a href="#" data-ajax-url="<?= Url::to(['attach/delete', 'id'=>$attach->id]) ?>" onclick="return deleteAttach(this);"><i class="fa fa-times"></i> <?= Module::t("module","Delete") ?></a>
                 </div>

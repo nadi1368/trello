@@ -53,7 +53,7 @@ function fileUpload(event){
             $("#dropBox").html("متاسفانه حجم فایل شما زیاد است (>3 MB)");
         }else{
             //append the uploadable file to FormData object
-            data.append('file', file, file.name);
+            data.append('Attachments[attach]', file, file.name);
 
             //create a new XMLHttpRequest
             var xhr = new XMLHttpRequest();

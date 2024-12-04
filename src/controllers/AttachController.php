@@ -33,11 +33,12 @@ class AttachController extends Controller
             ],
         ];
     }
-    /*public function beforeAction($action)
+
+    public function beforeAction($action)
     {
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
-    }*/
+    }
 
 
     /**
@@ -47,50 +48,26 @@ class AttachController extends Controller
      */
     public function actionCreate($id)
     {
-        $response=['success'=>false, 'data'=>'', 'msg'=>'خطا در ثبت اطلاعات.'];
-        $task=$this->findModelTask($id);
+        $response = ['success' => false, 'data' => '', 'msg' => 'خطا در ثبت اطلاعات.'];
+        $task = $this->findModelTask($id);
         $this->findModelProject($task->list->project_id);// بررسی دسترسی کاربر به این پروژه
-        $base_name=basename($_FILES["file"]["name"]);
-        $fileName = time().'_'.$base_name;
 
-        $model = new Attachments();
+        $model = new Attachments(['scenario' => Attachments::SCENARIO_CREATE,  'task_id' => $task->id]);
 
-        $upload_form=new AttachUploadForm();
-        $upload_form->file_name=UploadedFile::getInstanceByName("file");
-        //file upload path
-        $targetDir = $model->getUploadPath();
-        $targetFilePath = $targetDir . $fileName;
+        if ($model->save()) {
+            $response['success'] = true;
 
-
-
-        if($upload_form->validate()){
-            //upload file to server
-            if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
-
-                $model->task_id=$id;
-                $model->attach=$fileName;
-                $model->base_name=$base_name;
-                if($model->save())
-                {
-                    $response['success'] = true;
-
-                    $response['ajax_div']='#task_'.$id;
-                    $response['task_list_id']='#tasks-ul-'.$task->list_id;
-                    $response['task_view']=$this->renderPartial('/task/_new', [
-                        'model' => $task,
-                    ]);
-                    $response['attach_list']=$this->renderPartial('_list', [
-                        'model' => $task,
-                    ]);
-                }
-            }else{
-                $response['msg'] = 'خطا در آپلود فایل';
-            }
-        }else{
-            $response['msg'] = Html::errorSummary($upload_form,['header'=>'']);
+            $response['ajax_div'] = '#task_' . $id;
+            $response['task_list_id'] = '#tasks-ul-' . $task->list_id;
+            $response['task_view'] = $this->renderPartial('/task/_new', [
+                'model' => $task,
+            ]);
+            $response['attach_list'] = $this->renderPartial('_list', [
+                'model' => $task,
+            ]);
+        } else {
+            $response['msg'] = Html::errorSummary($model, ['header' => '']);
         }
-
-
 
         return $this->asJson($response);
     }
@@ -98,32 +75,28 @@ class AttachController extends Controller
 
     public function actionDelete($id)
     {
-        $response=['success'=>false, 'data'=>'', 'msg'=>'خطا در ثبت اطلاعات.'];
+        $response = ['success' => false, 'data' => '', 'msg' => 'خطا در ثبت اطلاعات.'];
         $model = $this->findModel($id);
-        $task=$this->findModelTask($model->task_id);
+        $task = $this->findModelTask($model->task_id);
         $this->findModelProject($task->list->project_id);// بررسی دسترسی کاربر به این پروژه
 
 
-        if($model->softDelete())
-        {
+        if ($model->softDelete()) {
             $response['success'] = true;
 
-            $response['ajax_div']='#task_'.$task->id;
-            $response['task_list_id']='#tasks-ul-'.$task->list_id;
-            $response['task_view']=$this->renderPartial('/task/_new', [
+            $response['ajax_div'] = '#task_' . $task->id;
+            $response['task_list_id'] = '#tasks-ul-' . $task->list_id;
+            $response['task_view'] = $this->renderPartial('/task/_new', [
                 'model' => $task,
             ]);
-            $response['attach_list']=$this->renderPartial('_list', [
+            $response['attach_list'] = $this->renderPartial('_list', [
                 'model' => $task,
             ]);
         }
 
 
-
-
         return $this->asJson($response);
     }
-
 
 
     /**
@@ -161,7 +134,6 @@ class AttachController extends Controller
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
-
 
 
 }
