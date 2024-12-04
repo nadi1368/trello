@@ -43,7 +43,7 @@ $colors=TaskLabel::itemAlias('Color');
     <div class="clearfix"></div>
     <hr/>
     <a class="button button-success button-inline" data-ajax-url="<?= Url::to(['label/create', 'id' => $model->id]) ?>" onclick="return createLabel(this);">
-        <?= Module::t("module","Create") ?><
-    /a>
+        <?= Module::t("module","Create") ?>
+    </a>
     <div class="clearfix"></div>
 </div>

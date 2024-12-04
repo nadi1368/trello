@@ -262,7 +262,7 @@ a:focus, a:hover, a:active {
 }
 
 .list-created > * {
-    background-color: #d9e5f5;
+    background-color: rgb(217 229 245 / 30%);
     color: #333;
     padding: 10px 15px;
 }
@@ -379,12 +379,12 @@ a.button-default {
 
 a.button-danger {
     background: #da4f49;
-    color: #fff;
+    color: #fff !important;
 }
 
 a.button-success {
     background: #5bb75b;
-    color: #fff;
+    color: #fff !important;
 }
 
 a.button-inline {

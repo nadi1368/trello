@@ -351,9 +351,9 @@ class ProjectTask extends \yii\db\ActiveRecord
         {// برای صفحه اصلی
             if($this->start)
             {
-                return '<span class="badge label-due-date badge-success" title="'.Yii::t("app","This card is complete.").'"><i class="fa fa-clock-o" ></i> '. Yii::$app->jdate->date("m/d",$this->end).'</span>';
+                return '<label class="badge label-due-date badge-success" title="'.Yii::t("app","This card is complete.").'"><i class="fa fa-clock-o" ></i> '. Yii::$app->jdate->date("m/d",$this->end).'</label>';
             }else{
-                return '<span class="badge badge-due-date '.$css_class.'" title="'.$title.'"><i class="fa fa-clock-o" ></i> '. Yii::$app->jdate->date("m/d",$this->end).'</span>';
+                return '<label class="badge badge-due-date '.$css_class.'" title="'.$title.'"><i class="fa fa-clock-o" ></i> '. Yii::$app->jdate->date("m/d",$this->end).'</label>';
             }
 
         }else
