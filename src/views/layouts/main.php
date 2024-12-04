@@ -7,15 +7,15 @@ use hesabro\helpers\components\Env;
 use yii\helpers\Html;
 use hesabro\trello\bundles\AppAsset;
 use yii\web\View;
-
+use common\widgets\dateRangePicker\RangePickerAsset;
 
 $socketServer = Env::get('TRELLO_SOCKET_SERVER');
-
 $this->registerJs(<<<JS
 const socketServer = '$socketServer';
 JS, View::POS_BEGIN);
 
 AppAsset::register($this);
+RangePickerAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
