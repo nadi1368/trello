@@ -36,6 +36,7 @@ class AppAsset extends AssetBundle
         'js/check-list.js', // چک لیست
         'js/due-date.js', // مهلت زمانی
         'js/attach.js', // آپلود فایل
+        'js/ajax-modal-popup.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

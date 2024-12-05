@@ -7,6 +7,7 @@ use hesabro\helpers\components\Env;
 use yii\helpers\Html;
 use hesabro\trello\bundles\AppAsset;
 use yii\web\View;
+use yii\bootstrap\Modal;
 
 
 $socketServer = Env::get('TRELLO_SOCKET_SERVER');
@@ -34,6 +35,18 @@ AppAsset::register($this);
     </div>
 
     <?php $this->endBody() ?>
+    <?php
+    Modal::begin([
+        'headerOptions' => ['id' => 'modalHeaderLoad'],
+        'id' => 'modalLoad',
+        //keeps from closing modal with esc key or by clicking out of the modal.
+        // user must click cancel or X to close
+        'clientOptions' => [],
+        'options' => ['tabindex' => false]
+    ]);
+    echo "<div id='modalContentLoad'></div>";
+    Modal::end();
+    ?>
 </body>
 </html>
 <?php $this->endPage() ?>
