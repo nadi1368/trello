@@ -41,7 +41,7 @@ class CheckListItem extends \yii\db\ActiveRecord
         return [
             [['check_list_id', 'title_item'], 'required'],
             [['creator_id', 'update_id', 'check_list_id', 'status', 'created', 'changed'], 'integer'],
-            [['title_item'], 'string', 'max' => 48],
+            [['title_item'], 'string', 'max' => 255],
             [['creator_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['creator_id' => 'id']],
             [['update_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['update_id' => 'id']],
             [['check_list_id'], 'exist', 'skipOnError' => true, 'targetClass' => CheckList::class, 'targetAttribute' => ['check_list_id' => 'id']],
