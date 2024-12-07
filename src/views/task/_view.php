@@ -72,12 +72,20 @@ $check_list = $model->getCheckLists()->active()->one();
                             <?= $this->render('_due_date_list', ['model' => $model]); ?>
                         </div>
 
-                        <div id="list-label">
-                            <?= $this->render('_label_list', ['select_labels' => $select_labels, 'model' => $model]); ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="list-label">
+                                    <?= $this->render('_label_list', ['select_labels' => $select_labels, 'model' => $model]); ?>
+                                </div>
+                            </div>
                         </div>
-
-                        <div id="list-member">
-                            <?= $this->render('_member_list', ['select_members' => $select_members, 'model' => $model]); ?>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="list-member">
+                                    <?= $this->render('_member_list', ['select_members' => $select_members, 'model' => $model]); ?>
+                                </div>
+                            </div>
                         </div>
 
                         <h5><i class="fa fa-list"></i> <?= Module::t("module", "Description") ?></h5>
