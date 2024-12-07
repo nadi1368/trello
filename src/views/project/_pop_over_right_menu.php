@@ -13,6 +13,7 @@ use hesabro\trello\Module;
         <a href="#" class="menu-button" onclick="return showUpdateProjectForm(this);"><?= Module::t("module","Update Project"); ?></a>
         <a href="#" class="menu-button" onclick="return showMemberProject(this);"><?= Module::t("module","Member"); ?></a>
         <a href="#" class="menu-button" onclick="return showTeamProject(this);"><?= Module::t("module","Teams"); ?></a>
+        <a href="#" class="menu-button" onclick="return showActivityProject(this);"><?= Module::t("module","Activities"); ?></a>
     </div>
 </div>
 
@@ -26,4 +27,8 @@ use hesabro\trello\Module;
 
 <div id="pop-menu-project-team" class="hide">
     <?= $this->render('_pop_over_project_team',['project'=>$project]); ?>
+</div>
+
+<div id="pop-menu-project-activity" class="hide">
+    <?= $this->render('_pop_over_project_activity',['project'=>$project]); ?>
 </div>

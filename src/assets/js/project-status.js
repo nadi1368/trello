@@ -291,6 +291,7 @@ var $html_menu=$('#pop-menu-menu').html();// ذخیره محتویات فرم م
 var $html_update_project=$('#pop-menu-update-project').html();
 var $html_member_project=$('#pop-menu-project-member').html();
 var $html_team_project=$('#pop-menu-project-team').html();
+var $html_activity_project = $('#pop-menu-project-activity').html();
 function  showUpdateProjectForm($this)
 {
     $('#pop-menu-menu').html($html_update_project);
@@ -448,7 +449,7 @@ function memberProject($this)
 }
 
 /**
- * تغیرر رل کاربر پروژه
+ * تغییر رل کاربر پروژه
  */
 function changeRoleProjectMemberNode(response)
 {
@@ -571,6 +572,15 @@ function teamProject($this)
         }
 
     });//ajax
+}
+
+/** 
+ * نمایش فرم فعالت ها
+*/
+
+function showActivityProject($this) {
+    $('#pop-menu-menu').html($html_activity_project);
+    return false;
 }
 
 /*
