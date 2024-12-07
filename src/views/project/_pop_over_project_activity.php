@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use hesabro\trello\models\TaskLogs;
 use hesabro\trello\Module;
 
-$activities= TaskLogs::find()->orderBy(['created' => SORT_ASC])->all();
+$activities= TaskLogs::find()->orderBy(['created' => SORT_DESC])->all();
 ?>
 
 <div class="pop-over-header js-pop-over-header">
