@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use hesabro\trello\models\TaskLogs;
 use hesabro\trello\Module;
 
@@ -19,8 +20,14 @@ $activities= TaskLogs::find()->orderBy(['created' => SORT_DESC])->all();
         <table class="table-member rtl">
             <tbody>
                 <?php if($activities): ?>
-                    <?php foreach($activities as $log): ?>
-                        <tr>
+                    <?php foreach($activities as $index => $log): ?>
+                        <tr class="task"
+                            id="<?= 'task_'.$log->task->id; ?>"
+                            data-index="<?= $index; ?>"
+                            data-ajax-url-move="<?= Url::to(['task/move', 'id'=>$log->task->id]) ?>"
+                            data-ajax-receive-url="<?= Url::to(['task/receive', 'id'=>$log->task->id]) ?>"
+                            data-ajax-url-view="<?= Url::to(['task/view', 'id'=>$log->task->id]) ?>"
+                        >
                             <td>
                                 <div class="panel-comment">
                                     <div class="comment-body">
