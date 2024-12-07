@@ -1,5 +1,7 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
 class m221106_101003_create_table_tbl_project_user extends Migration
@@ -31,7 +33,7 @@ class m221106_101003_create_table_tbl_project_user extends Migration
 
         $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_project_user}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_project_user}}", 'id', $this->integer()->unsigned()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_project_user}}", 'id', $this->integer()->unsigned()->notNull()->append('AUTO_INCREMENT'));
 
         $this->createIndex('idx-project_user-creator_id', '{{%tbl_project_user}}', ['creator_id', 'slave_id']);
         $this->createIndex('idx-project_user-project_id', '{{%tbl_project_user}}', ['project_id', 'slave_id']);

@@ -1,8 +1,10 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
-class m221106_101001_create_table_tbl_project_status extends Migration
+class m221106_101037_create_table_tbl_check_list extends Migration
 {
     public function safeUp()
     {
@@ -12,14 +14,13 @@ class m221106_101001_create_table_tbl_project_status extends Migration
         }
 
         $this->createTable(
-            '{{%tbl_project_status}}',
+            '{{%tbl_check_list}}',
             [
                 'id' => $this->integer()->notNull(),
                 'creator_id' => $this->integer()->unsigned()->notNull(),
                 'update_id' => $this->integer()->unsigned()->notNull(),
-                'project_id' => $this->integer()->unsigned()->notNull(),
-                'title_status' => $this->string(48)->notNull(),
-                's_order' => $this->integer()->notNull()->defaultValue('1'),
+                'task_id' => $this->integer()->unsigned()->notNull(),
+                'title_ch' => $this->string(48)->notNull(),
                 'status' => $this->integer()->notNull(),
                 'created' => $this->integer()->unsigned()->notNull(),
                 'changed' => $this->integer()->unsigned()->notNull(),
@@ -28,18 +29,18 @@ class m221106_101001_create_table_tbl_project_status extends Migration
             $tableOptions
         );
 
-        $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_project_status}}', ['id', 'slave_id']);
+        $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_check_list}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_project_status}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_check_list}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
 
-        $this->createIndex('creator_id', '{{%tbl_project_status}}', ['creator_id', 'slave_id']);
-        $this->createIndex('project_id', '{{%tbl_project_status}}', ['project_id', 'slave_id']);
-        $this->createIndex('slave_id_index', '{{%tbl_project_status}}', ['slave_id']);
-        $this->createIndex('update_id', '{{%tbl_project_status}}', ['update_id', 'slave_id']);
+        $this->createIndex('creator_id', '{{%tbl_check_list}}', ['creator_id', 'slave_id']);
+        $this->createIndex('slave_id_index', '{{%tbl_check_list}}', ['slave_id']);
+        $this->createIndex('task_id', '{{%tbl_check_list}}', ['task_id', 'slave_id']);
+        $this->createIndex('update_id', '{{%tbl_check_list}}', ['update_id', 'slave_id']);
 
         $this->addForeignKey(
-            'tbl_project_status_ibfk_1',
-            '{{%tbl_project_status}}',
+            'tbl_check_list_ibfk_1',
+            '{{%tbl_check_list}}',
             ['creator_id', 'slave_id'],
             '{{%user}}',
             ['id', 'slave_id'],
@@ -47,8 +48,8 @@ class m221106_101001_create_table_tbl_project_status extends Migration
             'NO ACTION'
         );
         $this->addForeignKey(
-            'tbl_project_status_ibfk_2',
-            '{{%tbl_project_status}}',
+            'tbl_check_list_ibfk_2',
+            '{{%tbl_check_list}}',
             ['update_id', 'slave_id'],
             '{{%user}}',
             ['id', 'slave_id'],
@@ -56,10 +57,10 @@ class m221106_101001_create_table_tbl_project_status extends Migration
             'NO ACTION'
         );
         $this->addForeignKey(
-            'tbl_project_status_ibfk_3',
-            '{{%tbl_project_status}}',
-            ['project_id', 'slave_id'],
-            '{{%tbl_project}}',
+            'tbl_check_list_ibfk_3',
+            '{{%tbl_check_list}}',
+            ['task_id', 'slave_id'],
+            '{{%tbl_project_task}}',
             ['id', 'slave_id'],
             'NO ACTION',
             'NO ACTION'
@@ -68,6 +69,6 @@ class m221106_101001_create_table_tbl_project_status extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%tbl_project_status}}');
+        $this->dropTable('{{%tbl_check_list}}');
     }
 }

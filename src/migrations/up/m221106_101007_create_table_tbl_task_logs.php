@@ -1,5 +1,7 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
 class m221106_101007_create_table_tbl_task_logs extends Migration
@@ -28,7 +30,7 @@ class m221106_101007_create_table_tbl_task_logs extends Migration
 
         $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_task_logs}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_task_logs}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_task_logs}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
 
         $this->createIndex('creator_id', '{{%tbl_task_logs}}', ['creator_id', 'slave_id']);
         $this->createIndex('new_status', '{{%tbl_task_logs}}', ['new_status', 'slave_id']);

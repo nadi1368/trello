@@ -1,5 +1,7 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
 class m221106_101039_create_table_tbl_comments extends Migration
@@ -30,7 +32,7 @@ class m221106_101039_create_table_tbl_comments extends Migration
 
         $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_comments}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_comments}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_comments}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
 
         $this->createIndex('creator_id', '{{%tbl_comments}}', ['creator_id', 'slave_id']);
         $this->createIndex('slave_id_index', '{{%tbl_comments}}', ['slave_id']);

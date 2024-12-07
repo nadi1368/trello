@@ -1,5 +1,7 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
 class m221106_101006_create_table_tbl_task_label extends Migration
@@ -29,7 +31,7 @@ class m221106_101006_create_table_tbl_task_label extends Migration
 
         $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_task_label}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_task_label}}", 'id', $this->integer()->unsigned()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_task_label}}", 'id', $this->integer()->unsigned()->notNull()->append('AUTO_INCREMENT'));
 
         $this->createIndex('idx-task_label-creator_id', '{{%tbl_task_label}}', ['creator_id', 'slave_id']);
         $this->createIndex('idx-task_label-label_id', '{{%tbl_task_label}}', ['label_id', 'slave_id']);

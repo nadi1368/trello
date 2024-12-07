@@ -1,5 +1,7 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
 class m221106_101005_create_table_tbl_task_fallow extends Migration
@@ -29,7 +31,7 @@ class m221106_101005_create_table_tbl_task_fallow extends Migration
 
         $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_task_fallow}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_task_fallow}}", 'id', $this->integer()->unsigned()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_task_fallow}}", 'id', $this->integer()->unsigned()->notNull()->append('AUTO_INCREMENT'));
 
         $this->createIndex('idx-task_fallow-creator_id', '{{%tbl_task_fallow}}', ['creator_id', 'slave_id']);
         $this->createIndex('idx-task_fallow-task_id', '{{%tbl_task_fallow}}', ['task_id', 'slave_id']);

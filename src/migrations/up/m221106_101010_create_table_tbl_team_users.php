@@ -1,8 +1,10 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
-class m221106_101041_create_table_tbl_project_teams extends Migration
+class m221106_101010_create_table_tbl_team_users extends Migration
 {
     public function safeUp()
     {
@@ -12,13 +14,15 @@ class m221106_101041_create_table_tbl_project_teams extends Migration
         }
 
         $this->createTable(
-            '{{%tbl_project_teams}}',
+            '{{%tbl_team_users}}',
             [
                 'id' => $this->integer()->notNull(),
                 'creator_id' => $this->integer()->unsigned()->notNull(),
                 'update_id' => $this->integer()->unsigned()->notNull(),
-                'project_id' => $this->integer()->unsigned()->notNull(),
                 'team_id' => $this->integer()->notNull(),
+                'user_id' => $this->integer()->unsigned()->notNull(),
+                'role' => $this->integer()->notNull(),
+                'is_creator' => $this->integer()->notNull()->defaultValue('0'),
                 'status' => $this->integer()->notNull(),
                 'created' => $this->integer()->unsigned()->notNull(),
                 'changed' => $this->integer()->unsigned()->notNull(),
@@ -27,19 +31,19 @@ class m221106_101041_create_table_tbl_project_teams extends Migration
             $tableOptions
         );
 
-        $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_project_teams}}', ['id', 'slave_id']);
+        $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_team_users}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_project_teams}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_team_users}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
 
-        $this->createIndex('creator_id', '{{%tbl_project_teams}}', ['creator_id', 'slave_id']);
-        $this->createIndex('project_id', '{{%tbl_project_teams}}', ['project_id', 'slave_id']);
-        $this->createIndex('slave_id_index', '{{%tbl_project_teams}}', ['slave_id']);
-        $this->createIndex('team_id', '{{%tbl_project_teams}}', ['team_id', 'slave_id']);
-        $this->createIndex('update_id', '{{%tbl_project_teams}}', ['update_id', 'slave_id']);
+        $this->createIndex('creator_id', '{{%tbl_team_users}}', ['creator_id', 'slave_id']);
+        $this->createIndex('slave_id_index', '{{%tbl_team_users}}', ['slave_id']);
+        $this->createIndex('team_id', '{{%tbl_team_users}}', ['team_id', 'slave_id']);
+        $this->createIndex('update_id', '{{%tbl_team_users}}', ['update_id', 'slave_id']);
+        $this->createIndex('user_id', '{{%tbl_team_users}}', ['user_id', 'slave_id']);
 
         $this->addForeignKey(
-            'tbl_project_teams_ibfk_1',
-            '{{%tbl_project_teams}}',
+            'tbl_team_users_ibfk_1',
+            '{{%tbl_team_users}}',
             ['creator_id', 'slave_id'],
             '{{%user}}',
             ['id', 'slave_id'],
@@ -47,8 +51,8 @@ class m221106_101041_create_table_tbl_project_teams extends Migration
             'NO ACTION'
         );
         $this->addForeignKey(
-            'tbl_project_teams_ibfk_2',
-            '{{%tbl_project_teams}}',
+            'tbl_team_users_ibfk_2',
+            '{{%tbl_team_users}}',
             ['update_id', 'slave_id'],
             '{{%user}}',
             ['id', 'slave_id'],
@@ -56,19 +60,19 @@ class m221106_101041_create_table_tbl_project_teams extends Migration
             'NO ACTION'
         );
         $this->addForeignKey(
-            'tbl_project_teams_ibfk_3',
-            '{{%tbl_project_teams}}',
-            ['project_id', 'slave_id'],
-            '{{%tbl_project}}',
+            'tbl_team_users_ibfk_3',
+            '{{%tbl_team_users}}',
+            ['team_id', 'slave_id'],
+            '{{%tbl_team}}',
             ['id', 'slave_id'],
             'NO ACTION',
             'NO ACTION'
         );
         $this->addForeignKey(
-            'tbl_project_teams_ibfk_4',
-            '{{%tbl_project_teams}}',
-            ['team_id', 'slave_id'],
-            '{{%tbl_team}}',
+            'tbl_team_users_ibfk_4',
+            '{{%tbl_team_users}}',
+            ['user_id', 'slave_id'],
+            '{{%user}}',
             ['id', 'slave_id'],
             'NO ACTION',
             'NO ACTION'
@@ -77,6 +81,6 @@ class m221106_101041_create_table_tbl_project_teams extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%tbl_project_teams}}');
+        $this->dropTable('{{%tbl_team_users}}');
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
 class m221106_101008_create_table_tbl_task_watches extends Migration
@@ -26,7 +28,7 @@ class m221106_101008_create_table_tbl_task_watches extends Migration
 
         $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_task_watches}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_task_watches}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_task_watches}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
 
         $this->createIndex('creator_id', '{{%tbl_task_watches}}', ['creator_id', 'slave_id']);
         $this->createIndex('slave_id_index', '{{%tbl_task_watches}}', ['slave_id']);

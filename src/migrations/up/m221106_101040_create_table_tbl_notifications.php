@@ -1,5 +1,7 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
 class m221106_101040_create_table_tbl_notifications extends Migration
@@ -30,7 +32,7 @@ class m221106_101040_create_table_tbl_notifications extends Migration
 
         $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_notifications}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_notifications}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_notifications}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
 
         $this->createIndex('creator_id', '{{%tbl_notifications}}', ['creator_id', 'slave_id']);
         $this->createIndex('project_id', '{{%tbl_notifications}}', ['project_id', 'slave_id']);

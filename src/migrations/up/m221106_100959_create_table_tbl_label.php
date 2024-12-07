@@ -1,5 +1,7 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
 class m221106_100959_create_table_tbl_label extends Migration
@@ -29,7 +31,7 @@ class m221106_100959_create_table_tbl_label extends Migration
 
         $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_label}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_label}}", 'id', $this->integer()->unsigned()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_label}}", 'id', $this->integer()->unsigned()->notNull()->append('AUTO_INCREMENT'));
 
         $this->createIndex('idx-label-creator_id', '{{%tbl_label}}', ['creator_id', 'slave_id']);
         $this->createIndex('idx-label-update_id', '{{%tbl_label}}', ['update_id', 'slave_id']);

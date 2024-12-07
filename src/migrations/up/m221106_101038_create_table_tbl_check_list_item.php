@@ -1,8 +1,10 @@
 <?php
 
+namespace up;
+
 use yii\db\Migration;
 
-class m221106_101036_create_table_tbl_attachments extends Migration
+class m221106_101038_create_table_tbl_check_list_item extends Migration
 {
     public function safeUp()
     {
@@ -12,14 +14,13 @@ class m221106_101036_create_table_tbl_attachments extends Migration
         }
 
         $this->createTable(
-            '{{%tbl_attachments}}',
+            '{{%tbl_check_list_item}}',
             [
                 'id' => $this->integer()->notNull(),
                 'creator_id' => $this->integer()->unsigned()->notNull(),
                 'update_id' => $this->integer()->unsigned()->notNull(),
-                'task_id' => $this->integer()->unsigned()->notNull(),
-                'attach' => $this->string(48)->notNull(),
-                'base_name' => $this->string(128)->notNull(),
+                'check_list_id' => $this->integer()->notNull(),
+                'title_item' => $this->string(48)->notNull(),
                 'status' => $this->integer()->notNull(),
                 'created' => $this->integer()->unsigned()->notNull(),
                 'changed' => $this->integer()->unsigned()->notNull(),
@@ -28,18 +29,18 @@ class m221106_101036_create_table_tbl_attachments extends Migration
             $tableOptions
         );
 
-        $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_attachments}}', ['id', 'slave_id']);
+        $this->addPrimaryKey('PRIMARYKEY', '{{%tbl_check_list_item}}', ['id', 'slave_id']);
 
-		$this->alterColumn("{{%tbl_attachments}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
+        $this->alterColumn("{{%tbl_check_list_item}}", 'id', $this->integer()->notNull()->append('AUTO_INCREMENT'));
 
-        $this->createIndex('creator_id', '{{%tbl_attachments}}', ['creator_id', 'slave_id']);
-        $this->createIndex('slave_id_index', '{{%tbl_attachments}}', ['slave_id']);
-        $this->createIndex('task_id', '{{%tbl_attachments}}', ['task_id', 'slave_id']);
-        $this->createIndex('update_id', '{{%tbl_attachments}}', ['update_id', 'slave_id']);
+        $this->createIndex('check_list_id', '{{%tbl_check_list_item}}', ['check_list_id', 'slave_id']);
+        $this->createIndex('creator_id', '{{%tbl_check_list_item}}', ['creator_id', 'slave_id']);
+        $this->createIndex('slave_id_index', '{{%tbl_check_list_item}}', ['slave_id']);
+        $this->createIndex('update_id', '{{%tbl_check_list_item}}', ['update_id', 'slave_id']);
 
         $this->addForeignKey(
-            'tbl_attachments_ibfk_1',
-            '{{%tbl_attachments}}',
+            'tbl_check_list_item_ibfk_1',
+            '{{%tbl_check_list_item}}',
             ['creator_id', 'slave_id'],
             '{{%user}}',
             ['id', 'slave_id'],
@@ -47,8 +48,8 @@ class m221106_101036_create_table_tbl_attachments extends Migration
             'NO ACTION'
         );
         $this->addForeignKey(
-            'tbl_attachments_ibfk_2',
-            '{{%tbl_attachments}}',
+            'tbl_check_list_item_ibfk_2',
+            '{{%tbl_check_list_item}}',
             ['update_id', 'slave_id'],
             '{{%user}}',
             ['id', 'slave_id'],
@@ -56,10 +57,10 @@ class m221106_101036_create_table_tbl_attachments extends Migration
             'NO ACTION'
         );
         $this->addForeignKey(
-            'tbl_attachments_ibfk_3',
-            '{{%tbl_attachments}}',
-            ['task_id', 'slave_id'],
-            '{{%tbl_project_task}}',
+            'tbl_check_list_item_ibfk_3',
+            '{{%tbl_check_list_item}}',
+            ['check_list_id', 'slave_id'],
+            '{{%tbl_check_list}}',
             ['id', 'slave_id'],
             'NO ACTION',
             'NO ACTION'
@@ -68,6 +69,6 @@ class m221106_101036_create_table_tbl_attachments extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%tbl_attachments}}');
+        $this->dropTable('{{%tbl_check_list_item}}');
     }
 }
