@@ -16,7 +16,7 @@ $activities = TaskLogs::find()->orderBy(['created' => SORT_DESC])->all();
     </a>
 </div>
 
-<div class="pop-over-content" id="project-team-list">
+<div class="pop-over-content" id="project-team-list" style="height: 700px;">
     <div class="list-group without-border rtl">
         <table class="table-member rtl">
             <tbody>
