@@ -1,7 +1,5 @@
 <?php
 use yii\helpers\Url;
-use yii\helpers\Html;
-use hesabro\trello\models\Project;
 use hesabro\trello\models\ProjectUser;
 use hesabro\trello\Module;
 
