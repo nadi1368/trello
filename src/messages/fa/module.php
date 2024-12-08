@@ -18,6 +18,7 @@
  */
 return [
     'Activity' => 'فعالیت',
+    'Activities' => 'فعالیت‌ها',
     'Add Comment' => 'افزودن نظر',
     'Add New User' => 'افزودن کاربر جدید',
     'Add This User To Team' => 'اضافه کردن این کاربر به تیم',
