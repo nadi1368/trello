@@ -20,7 +20,7 @@ use yii\helpers\Html;
     </nav>
     <?= $this->render('_top_bar',['project' => $project]); ?>
     <div class="lists" id="lists">
-            <?= $this->render('_list',['project'=>$project,'statuses' => $statuses]); ?>
+        <?= $this->render('_list',['project'=>$project,'statuses' => $statuses]); ?>
     </div>
 
     <?= $this->render('_modal'); ?>
@@ -28,5 +28,3 @@ use yii\helpers\Html;
     <?= $this->render('_pop_over_right_menu',['project'=>$project]); ?>
 
 </div>
-
-

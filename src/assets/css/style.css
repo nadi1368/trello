@@ -991,3 +991,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-top: 10px;
     padding-top: 20px;
 }
+.pop-over {
+    height: initial !important;
+}
+.c-disabled {
+    pointer-events: none !important;
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}

@@ -448,7 +448,7 @@ function memberProject($this)
 }
 
 /**
- * تغیرر رل کاربر پروژه
+ * تغییر رل کاربر پروژه
  */
 function changeRoleProjectMemberNode(response)
 {
@@ -571,6 +571,23 @@ function teamProject($this)
         }
 
     });//ajax
+}
+
+/** 
+ * نمایش فرم فعالت ها
+*/
+
+function showActivityProject($this) {
+    $.ajax({
+        url: 'ajax-get-activities',
+        method: 'post',
+        success: function (response) {
+            $('#pop-menu-menu').html(response)
+        },
+        error: function () {
+            console.error('Error:', error)
+        }
+    })
 }
 
 /*
