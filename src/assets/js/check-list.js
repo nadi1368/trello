@@ -168,12 +168,6 @@ function UpdateCheckListItem()
                 return 'Errorr save Info';
             }
         },
-        display: function(value, response){
-            return false;
-        },
-    });
-    $('.check-list-item-update').on('shown', function(e, editable) {
-        editable.input.$input.val('');
     });
 }
 

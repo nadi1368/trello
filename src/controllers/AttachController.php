@@ -73,6 +73,18 @@ class AttachController extends Controller
     }
 
 
+    public function actionView($id)
+    {
+        $model = $this->findModel($id);
+        $task = $this->findModelTask($model->task_id);
+        $this->findModelProject($task->list->project_id);// بررسی دسترسی کاربر به این پروژه
+
+
+        return $this->renderAjax('_view', ['model' => $model]);
+    }
+
+
+
     public function actionDelete($id)
     {
         $response = ['success' => false, 'data' => '', 'msg' => 'خطا در ثبت اطلاعات.'];

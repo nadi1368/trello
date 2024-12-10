@@ -13,10 +13,11 @@ $attachments= $model->getAttachments()->active()->orderBy('id DESC')->all();
             <div class="attachment-thumbnail-preview" >
                 <span class="attachment-thumbnail-preview-ext">
                     <?php
-                            $fileUrl = $attach->getFileUrl('attach');
+                           // $fileUrl = $attach->getFileUrl('attach');
+                            $fileUrl = 'https://storage.hesabro.ir/trello/1/2a8b7361329ee356b336ec638a74e78f.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=f5169aec-6fce-42b3-9c7e-25f3ac9a790f%2F20241205%2Firan%2Fs3%2Faws4_request&X-Amz-Date=20241205T144349Z&X-Amz-SignedHeaders=host&X-Amz-Expires=1800&X-Amz-Signature=515382d309fbf1a6d3f06002b1be660556763d0fa3b6529794666b386257e66c';
                             if($attach->is_image()){
 
-                                echo Html::img($fileUrl,['class'=>'img-responsive']);
+                                echo Html::a(Html::img($fileUrl,['class'=>'img-responsive', 'width'=>'100px']), ['attach/view', 'id'=>$attach->id], ['data-pjax' => 0, 'class'=> 'showModalButton']);
                             }else
                             {
                                 echo Html::a('دانلود فایل پیوست', $fileUrl, ['data-pjax' => 0, 'class' => 'btn btn-info']);
@@ -24,7 +25,7 @@ $attachments= $model->getAttachments()->active()->orderBy('id DESC')->all();
                     ?>
                 </span>
             </div>
-            <div class="attachment-thumbnail-details" >
+            <div class="attachment-thumbnail-details rtl">
                 <div class="ltr text-right">
                     <span class="attachment-thumbnail-name"><?= $attach->base_name; ?></span>
                 </div>
