@@ -291,7 +291,6 @@ var $html_menu=$('#pop-menu-menu').html();// ذخیره محتویات فرم م
 var $html_update_project=$('#pop-menu-update-project').html();
 var $html_member_project=$('#pop-menu-project-member').html();
 var $html_team_project=$('#pop-menu-project-team').html();
-var $html_activity_project = $('#pop-menu-project-activity').html();
 function  showUpdateProjectForm($this)
 {
     $('#pop-menu-menu').html($html_update_project);
@@ -579,17 +578,9 @@ function teamProject($this)
 */
 
 function showActivityProject($this) {
-    $('#pop-menu-menu').html($html_activity_project);
-    return false;
-}
-
-function getActivitiesPage ($this, page) {
     $.ajax({
         url: 'ajax-get-activities',
-        method: 'get',
-        data: {
-            page: page,
-        },
+        method: 'post',
         success: function (response) {
             $('#pop-menu-menu').html(response)
         },

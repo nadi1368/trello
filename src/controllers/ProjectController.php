@@ -2,7 +2,8 @@
 
 namespace hesabro\trello\controllers;
 
-
+use yii\data\ActiveDataProvider;
+use hesabro\trello\models\TaskLogs;
 use Yii;
 use backend\models\User;
 use hesabro\trello\models\Project;
@@ -407,10 +408,17 @@ class ProjectController extends Controller
         return $this->asJson($response);
     }
 
-    public function actionAjaxGetActivities($page) 
+    public function actionAjaxGetActivities() 
     {
-        return $this->renderPartial('_pop_over_project_activity', [
-            'page' => $page,
+        $dataProvider = new ActiveDataProvider([
+            'query' => TaskLogs::find()->orderBy(['created' => SORT_DESC]),
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+        ]);
+
+        return $this->renderAjax('_pop_over_project_activity', [
+            'dataProvider' => $dataProvider,
         ]);
     }
 
