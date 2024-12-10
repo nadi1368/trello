@@ -29,5 +29,3 @@ use yii\helpers\Html;
     <?= $this->render('_pop_over_right_menu',['project'=>$project]); ?>
 
 </div>
-
-

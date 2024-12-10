@@ -1,11 +1,28 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use hesabro\trello\models\TaskLogs;
 use hesabro\trello\Module;
+use yii\data\Pagination;
 
-$activities = TaskLogs::find()->orderBy(['created' => SORT_DESC])->all();
+if (!isset($page)) {
+    $page = 1;
+}
+
+$query = TaskLogs::find()->orderBy(['created' => SORT_DESC]);
+$totalCount = $query->count();
+$pageSize = 5;
+$dataProvider = new Pagination([
+    'totalCount' => $totalCount,
+    'pageSize' => $pageSize,
+    'page' => $page - 1,
+]);
+
+$totalPages = ceil($totalCount / $pageSize);
+
+$activities = $query->offset($dataProvider->offset)
+    ->limit($dataProvider->limit)
+    ->all();
 ?>
 
 <div class="pop-over-header js-pop-over-header">
@@ -49,5 +66,21 @@ $activities = TaskLogs::find()->orderBy(['created' => SORT_DESC])->all();
                 <?php endif; ?>
             </tbody>
         </table>
+
+        <ul class="pagination justify-content-center mt-2">
+            <li class="page-item page-link <?= $page <= 1 ? 'c-disabled' : '' ?>" 
+                onclick="<?= $page > 1 ? 'return getActivitiesPage(this, ' . ($page - 1) . ')' : 'return false;' ?>">
+                قبل
+            </li>
+
+            <li class="page-item page-link <?= $page >= $totalPages ? 'c-disabled' : '' ?>" 
+                onclick="<?= $page < $totalPages ? 'return getActivitiesPage(this, ' . ($page + 1) . ')' : 'return false;' ?>">
+                بعد
+            </li>
+        </ul>
     </div>
 </div>
+
+<style>
+    
+</style>

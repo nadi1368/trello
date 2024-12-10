@@ -583,6 +583,22 @@ function showActivityProject($this) {
     return false;
 }
 
+function getActivitiesPage ($this, page) {
+    $.ajax({
+        url: 'ajax-get-activities',
+        method: 'get',
+        data: {
+            page: page,
+        },
+        success: function (response) {
+            $('#pop-menu-menu').html(response)
+        },
+        error: function () {
+            console.error('Error:', error)
+        }
+    })
+}
+
 /*
 * دکمه برگشت به منو
  */

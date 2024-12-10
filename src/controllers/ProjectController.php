@@ -406,6 +406,14 @@ class ProjectController extends Controller
         }
         return $this->asJson($response);
     }
+
+    public function actionAjaxGetActivities($page) 
+    {
+        return $this->renderPartial('_pop_over_project_activity', [
+            'page' => $page,
+        ]);
+    }
+
     /**
      * Finds the Project model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
