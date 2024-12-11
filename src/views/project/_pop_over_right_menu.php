@@ -3,8 +3,10 @@
 use hesabro\trello\Module;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 ?>
 
+<?php Pjax::begin(['id' => 'list-activites-pjax']); ?>
 <div id="pop-menu-menu" class="pop-over">
     <div class="pop-over-header js-pop-over-header">
         <span class="pop-over-header-title"><?= Module::t("module", "Menu") ?></span>
@@ -14,7 +16,6 @@ use yii\helpers\Url;
         <a href="javascript:void(0)" class="menu-button" onclick="return showUpdateProjectForm(this);"><?= Module::t("module", "Update Project"); ?></a>
         <a href="javascript:void(0)" class="menu-button" onclick="return showMemberProject(this);"><?= Module::t("module", "Member"); ?></a>
         <a href="javascript:void(0)" class="menu-button" onclick="return showTeamProject(this);"><?= Module::t("module", "Teams"); ?></a>
-        <a href="javascript:void(0)" class="menu-button" onclick="return showActivityProject(this);"><?= Module::t("module", "Activities"); ?></a>
 
         <?= Html::a(
             Module::t("module", "Activities"),

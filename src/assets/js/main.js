@@ -123,3 +123,8 @@ class MySocket {
 }
 
 var socket=new MySocket();
+
+function initDateInputBtn()
+{
+
+}

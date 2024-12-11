@@ -3,18 +3,12 @@
 /* @var $this View */
 /* @var $content string */
 
-use hesabro\helpers\components\Env;
 use yii\helpers\Html;
 use hesabro\trello\bundles\AppAsset;
 use yii\web\View;
 use yii\bootstrap\Modal;
+use yii\widgets\Pjax;
 
-
-$socketServer = Env::get('TRELLO_SOCKET_SERVER');
-
-$this->registerJs(<<<JS
-const socketServer = '$socketServer';
-JS, View::POS_BEGIN);
 
 AppAsset::register($this);
 ?>
@@ -34,7 +28,6 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 
-    <?php $this->endBody() ?>
     <?php
     Modal::begin([
         'headerOptions' => ['id' => 'modalHeaderLoad'],
@@ -64,6 +57,11 @@ AppAsset::register($this);
         </div>
     </div>
     <?php Modal::end(); ?>
+
+
+    <?php Pjax::begin(['id' => 'init-pjax']); ?>
+    <?php Pjax::end(); ?>
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

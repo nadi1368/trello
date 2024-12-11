@@ -413,7 +413,7 @@ class ProjectController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => TaskLogs::find()->orderBy(['created' => SORT_DESC]),
             'pagination' => [
-                'pageSize' => 5,
+                'pageSize' => 10,
             ],
         ]);
 

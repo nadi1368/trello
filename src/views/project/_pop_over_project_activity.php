@@ -1,14 +1,12 @@
 <?php
 use yii\widgets\ListView;
 use hesabro\trello\Module;
-use yii\widgets\Pjax;
 ?>
 
 
-<?php Pjax::begin(['id' => 'list-activites-pjax']); ?>
-
-<div class="pop-over-content" id="project-team-list" style="height: 700px;">
+<div  >
     <div class="list-group without-border rtl">
+        <?php \yii\widgets\Pjax::begin(['timeout' => 30000, 'enablePushState' => false]); ?>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'itemView' => '_item_activity',
@@ -22,7 +20,6 @@ use yii\widgets\Pjax;
                 'prevPageLabel' => Module::t('module', 'Previous'), 
             ],
         ]); ?>
+        <?php \yii\widgets\Pjax::end(); ?>
     </div>
 </div>
-
-<?php Pjax::end(); ?>

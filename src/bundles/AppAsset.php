@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
         'js/socket.io.min.js',
         'js/jquery-2.0.3.min.js',
         'js/bootstrap-editable.min.js',
-        'js/bootstrap.min.js',
+        'js/bootstrap.new.min.js',
         'js/jquery-ui.js',
         'js/holder.min.js',
         'js/main.js',

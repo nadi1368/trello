@@ -41,8 +41,7 @@ $(function () {
         modalPjax.find('.modal-dialog').addClass(button.data('size'));
         modalPjax.find('#modalPjaxHeader').html('<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4>' + button.data('title') + '</h4>');
     });
-    
-    console.log('erf tst');
+
     
     modalPjax.on('shown.bs.modal', function (e) {
         var button = $(e.relatedTarget),
