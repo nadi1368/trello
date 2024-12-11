@@ -22,7 +22,7 @@ class AppAsset extends AssetBundle
     ];
 
     public $js = [
-        'js/socket.io.min.js',
+        //'js/socket.io.min.js',
         'js/jquery-2.0.3.min.js',
         'js/bootstrap-editable.min.js',
         'js/bootstrap.new.min.js',
