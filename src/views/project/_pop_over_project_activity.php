@@ -4,15 +4,8 @@ use hesabro\trello\Module;
 use yii\widgets\Pjax;
 ?>
 
-<div class="pop-over-header js-pop-over-header">
-    <span class="pop-over-header-title"><?= Module::t("module", "Activities") ?></span>
-    <a href="javascript:void(0)" class="pop-over-header-close-btn" onclick="return closePopOver(this);"><i class="fa fa-times"></i> </a>
-    <a href="javascript:void(0)" class="pop-over-header-back-btn" onclick="return backMenu(this);">
-        <i class="fa fa-long-arrow-left"></i>
-    </a>
-</div>
 
-<?php Pjax::begin(); ?>
+<?php Pjax::begin(['id' => 'list-activites-pjax']); ?>
 
 <div class="pop-over-content" id="project-team-list" style="height: 700px;">
     <div class="list-group without-border rtl">
