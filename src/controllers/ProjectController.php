@@ -2,7 +2,8 @@
 
 namespace hesabro\trello\controllers;
 
-
+use yii\data\ActiveDataProvider;
+use hesabro\trello\models\TaskLogs;
 use Yii;
 use backend\models\User;
 use hesabro\trello\models\Project;
@@ -406,6 +407,21 @@ class ProjectController extends Controller
         }
         return $this->asJson($response);
     }
+
+    public function actionAjaxGetActivities() 
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => TaskLogs::find()->orderBy(['created' => SORT_DESC]),
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+        ]);
+
+        return $this->renderAjax('_pop_over_project_activity', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Finds the Project model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

@@ -34,16 +34,16 @@ $(function () {
         btn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>');
         return false;
     });
-
     // Pjax Modal
-
     var modalPjax = $('#modal-pjax');
     modalPjax.on('show.bs.modal', function (e) {
         var button = $(e.relatedTarget);
         modalPjax.find('.modal-dialog').addClass(button.data('size'));
         modalPjax.find('#modalPjaxHeader').html('<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4>' + button.data('title') + '</h4>');
     });
-
+    
+    console.log('erf tst');
+    
     modalPjax.on('shown.bs.modal', function (e) {
         var button = $(e.relatedTarget),
             redirect = button.data('redirect'),

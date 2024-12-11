@@ -47,6 +47,23 @@ AppAsset::register($this);
     echo "<div id='modalContentLoad'></div>";
     Modal::end();
     ?>
+    <?php
+    Modal::begin([
+        'headerOptions' => ['id' => 'modalPjaxHeader'],
+        'id' => 'modal-pjax',
+        'bodyOptions' => [
+            'id' => 'modalPjaxContent',
+            'class' => 'p-3',
+            'data' => ['show-preloader' => 0]
+        ],
+        'options' => ['tabindex' => false]
+    ]); ?>
+    <div class="text-center">
+        <div class="spinner-border text-info" role="status" style="width: 3rem; height: 3rem;">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <?php Modal::end(); ?>
 </body>
 </html>
 <?php $this->endPage() ?>
