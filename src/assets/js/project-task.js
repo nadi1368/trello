@@ -194,14 +194,11 @@ function initMoveTask(){
 /**
 // مشاهده جزئیات تسک در مودال
  */
-$( function() {
 
-    $( ".task" ).on( "click", function() {
-        viewTask(this);
-
-    });
-
-} );
+$(document).on('click', '.task', function (e) {
+    $('.close').click()
+    viewTask(this)
+})
 
 /**
  *  مشاهده جزئیات هر تسک در مدال

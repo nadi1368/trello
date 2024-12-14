@@ -12,6 +12,7 @@ use yii\helpers\Url;
 >
     <div class="panel-comment">
         <div class="comment-body">
+            <?= $model->task->title_task ?> |
             <?= $model->getTitle(); ?>
         </div>
         <div class="comment-footer">
