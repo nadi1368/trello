@@ -16,9 +16,11 @@ class AppAsset extends AssetBundle
         'css/style.css',
         //'css/bootstrap-combined.min.css',
         'css/bootstrap-editable.css',
+        'css/bootstrap.min.css',
         'css/jquery-ui.css',
         'font-awesome/css/font-awesome.css',
         'css/animate.min.css',
+        'css/sweetalert2.min.css',
     ];
 
     public $js = [
@@ -37,7 +39,9 @@ class AppAsset extends AssetBundle
         'js/due-date.js', // مهلت زمانی
         'js/attach.js', // آپلود فایل
         'js/trello-ajax-modal-popup.js',
+        'js/sweetalert2.all.min.js',
     ];
+    
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap4\BootstrapPluginAsset',

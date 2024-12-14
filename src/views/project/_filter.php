@@ -22,8 +22,8 @@ use yii\bootstrap\Html;
                     <div class="row">
                         <div class="col-md-12">
                             <?= $form->field($model, 'creator_id')->widget(Select2::class, [
-                                'options' => ['placeholder' => Module::t('module', 'Filter')],
-                                'data' => ProjectStatus::find()->select('creator_id')->andFilterWhere(['project_id' => $project->id])->asArray()->all(),
+                                // 'options' => ['placeholder' => Module::t('module', 'Filter')],
+                                'data' => [1 => "First", 2 => "Second", 3 => "Third", 4 => "Fourth", 5 => "Fifth"],
                                 'pluginOptions' => [
                                     'allowClear' => true,
                                     'multiple' => true
