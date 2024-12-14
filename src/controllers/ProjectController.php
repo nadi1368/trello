@@ -12,6 +12,8 @@ use hesabro\trello\models\Team;
 use hesabro\trello\models\ProjectTeams;
 use hesabro\trello\models\TeamUsers;
 use Exception;
+use hesabro\trello\models\ProjectStatus;
+use hesabro\trello\models\ProjectStatusSearch;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -66,15 +68,23 @@ class ProjectController extends Controller
     public function actionIndex($p_id)
     {
         $project=$this->findModel($p_id);
-        $statuses=$project->getProjectStatuses()->active()->orderBy('s_order')->all();// لیست های فعال
-        $archive_statuses=$project->getProjectStatuses()->deActive()->orderBy('s_order')->all(); // لیست های آرشیو شده
+        
+        $statusesSearchModel = new ProjectStatusSearch(['project_id' => $project->id, 'status' => ProjectStatus::STATUS_ACTIVE]);
+        $statusesdataProvider = $statusesSearchModel->search(Yii::$app->request->queryParams); 
+
+        $archiveStatusesSearchModel = new ProjectStatusSearch(['project_id' => $project->id, 'status' => ProjectStatus::STATUS_DELETED]);
+        $archiveStatusesDataProvider = $archiveStatusesSearchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'project' => $project,
-            'statuses'=>$statuses,
-            'archive_statuses'=>$archive_statuses,
+
+            'statusesSearchModel' => $statusesSearchModel,
+            'statusesdataProvider' => $statusesdataProvider,
+
+            'archiveStatusesSearchModel' => $archiveStatusesSearchModel,
+            'archiveStatusesDataProvider' => $archiveStatusesDataProvider,
         ]);
     }
-
 
 
     /**

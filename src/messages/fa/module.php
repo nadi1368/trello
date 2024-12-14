@@ -19,6 +19,9 @@
 return [
     'Activity' => 'فعالیت',
     'Activities' => 'فعالیت‌ها',
+    'Filter' => 'فیلتر',
+    'Reset' => 'بازنشانی',
+    'Close' => 'بستن',
     'Add Comment' => 'افزودن نظر',
     'Next' => 'بعد',
     'Previous' => 'قبل',
