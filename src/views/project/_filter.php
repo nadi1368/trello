@@ -15,7 +15,9 @@ $data = User::find()
     ->select(['id', 'CONCAT(first_name, " " ,last_name) AS full_name'])
     ->where(['id' => $creatorIds])
     ->indexBy('id')
-    ->column();
+    ->asArray()
+    ->all();
+$data = array_map(fn($item) => $item['full_name'], $data);
 ?>
 
 <div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -27,7 +29,7 @@ $data = User::find()
                 </button>
                 <h5 class="modal-title" id="exampleModalLongTitle"><?= Module::t('module', 'Filter') ?></h5>
             </div>
-            
+             
             <?php $form = ActiveForm::Begin() ?>
 
                 <div class="modal-body">
