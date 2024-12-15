@@ -4,6 +4,18 @@ use hesabro\trello\Module;
 use yii\bootstrap4\ActiveForm;
 use kartik\select2\Select2;
 use yii\bootstrap\Html;
+use backend\models\User;
+
+$creatorIds = ProjectStatus::find()
+    ->select('creator_id')
+    ->andFilterWhere(['project_id' => $project->id])
+    ->column();
+
+$data = User::find()
+    ->select(['id', 'first_name', 'last_name'])
+    ->where(['id' => $creatorIds])
+    ->indexBy('id')
+    ->column();
 ?>
 
 <div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -21,14 +33,18 @@ use yii\bootstrap\Html;
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
+
                             <?= $form->field($model, 'creator_id')->widget(Select2::class, [
-                                // 'options' => ['placeholder' => Module::t('module', 'Filter')],
-                                'data' => [1 => "First", 2 => "Second", 3 => "Third", 4 => "Fourth", 5 => "Fifth"],
+                                'options' => ['placeholder' => Module::t('module', 'Filter')],
+                                'data' => $data,
                                 'pluginOptions' => [
                                     'allowClear' => true,
                                     'multiple' => true
                                 ], 
                             ]);?>
+
+                            <?= $form->field($model, 'creator_id')->dropDownList($data, ['prompt' => Module::t('module', 'Choice')]) ?>
+
                         </div>
                     </div>
                 </div>
