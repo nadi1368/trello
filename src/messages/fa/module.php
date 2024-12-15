@@ -98,4 +98,5 @@ return [
     'Watch' => 'پیگیری',
     'You are watching this card.' => 'شما در حال مشاهده این کارت هستید.',
     'Choice' => 'انتخاب کنید',
+    'Labels' => 'برچسب ها',
 ];

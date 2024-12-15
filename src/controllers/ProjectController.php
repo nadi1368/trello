@@ -83,6 +83,8 @@ class ProjectController extends Controller
 
             'archiveStatusesSearchModel' => $archiveStatusesSearchModel,
             'archiveStatusesDataProvider' => $archiveStatusesDataProvider,
+
+            'label_select' => Yii::$app->request->isPost ? Yii::$app->request->post('label_select') : null,
         ]);
     }
 

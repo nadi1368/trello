@@ -5,19 +5,36 @@ use yii\bootstrap4\ActiveForm;
 use kartik\select2\Select2;
 use yii\bootstrap\Html;
 use backend\models\User;
+use hesabro\trello\models\Label;
+use hesabro\trello\models\TaskLabel;
 
 $creatorIds = ProjectStatus::find()
     ->select('creator_id')
     ->andFilterWhere(['project_id' => $project->id])
     ->column();
 
-$data = User::find()
+$creatorData = User::find()
     ->select(['id', 'CONCAT(first_name, " " ,last_name) AS full_name'])
     ->where(['id' => $creatorIds])
     ->indexBy('id')
     ->asArray()
     ->all();
-$data = array_map(fn($item) => $item['full_name'], $data);
+
+$creatorData = array_map(fn($item) => $item['full_name'], $creatorData);
+
+$labelIds = TaskLabel::find()
+    ->select('label_id')
+    // ->andFilterWhere(['project_id' => $project->id])
+    ->column();
+
+$labelData = Label::find()
+    ->select(['id', 'label_name', 'color_code'])
+    ->where(['id' => $labelIds])
+    ->indexBy('id')
+    ->asArray()
+    ->all();
+
+$labelData = array_map(fn($item) => $item['label_name'], $labelData);
 ?>
 
 <div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -30,23 +47,34 @@ $data = array_map(fn($item) => $item['full_name'], $data);
                 <h5 class="modal-title" id="exampleModalLongTitle"><?= Module::t('module', 'Filter') ?></h5>
             </div>
              
-            <?php $form = ActiveForm::Begin() ?>
+            <?php $form = ActiveForm::Begin([
+                'method' => 'post',
+            ]) ?>
 
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-
                             <?= $form->field($model, 'creator_id')->widget(Select2::class, [
                                 'options' => ['placeholder' => Module::t('module', 'Filter')],
-                                'data' => $data,
+                                'data' => $creatorData,
                                 'pluginOptions' => [
                                     'allowClear' => true,
                                     'multiple' => true
                                 ], 
-                            ]);?>
-
-                            <?= $form->field($model, 'creator_id')->dropDownList($data, ['prompt' => Module::t('module', 'Choice')]) ?>
-
+                            ]);?>    
+                        </div>
+                        <div class="col-md-12">
+                            <?php
+                            echo '<label class="control-label">' . Module::t("module", "Labels") . '</label>';
+                            echo Select2::widget([
+                                'name' => 'label_select',
+                                'data' => $labelData,
+                                'options' => [
+                                    'placeholder' => Module::t('module', 'Label'),
+                                    'multiple' => true
+                                ],
+                            ]);    
+                            ?>
                         </div>
                     </div>
                 </div>

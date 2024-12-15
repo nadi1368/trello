@@ -33,7 +33,7 @@ class ProjectTaskQuery extends \yii\db\ActiveQuery
     }
     public function active()
     {
-        return $this->andWhere(['<>','status', ProjectTask::STATUS_DELETED]);
+        return $this->andWhere(['<>',ProjectTask::tableName().'.status', ProjectTask::STATUS_DELETED]);
     }
 
 

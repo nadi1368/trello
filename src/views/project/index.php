@@ -31,6 +31,7 @@ use yii\helpers\Html;
             'project' => $project,
             'statusesSearchModel' => $statusesSearchModel,
             'statusesdataProvider' => $statusesdataProvider,
+            'label_select' => $label_select,
         ]); ?>
     </div>
 
