@@ -12,7 +12,7 @@ $creatorIds = ProjectStatus::find()
     ->column();
 
 $data = User::find()
-    ->select(['id', 'first_name', 'last_name'])
+    ->select(['id', 'CONCAT(first_name, " " ,last_name) AS full_name'])
     ->where(['id' => $creatorIds])
     ->indexBy('id')
     ->column();
