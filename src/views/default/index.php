@@ -1,13 +1,18 @@
-<?php
-use hesabro\trello\Module;
+<style>
+    .c-text-light {
+       color: whitesmoke;
+    }
+</style>
 
-$this->title = Module::t("module", "Boards");
-?>
-
-<?= $this->render('_board', [
-    'projects' => $projects
-]) ?>
-
-<?= $this->render('_team', [
-    'teams' => $teams,
-]) ?>
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <?= $this->render('_board', [
+            'projects' => $projects
+        ]) ?>
+    </div>
+    <div class="col-md-12">
+        <?= $this->render('_team', [
+            'teams' => $teams,
+        ]) ?>
+    </div>
+</div>
