@@ -3,7 +3,7 @@ use hesabro\trello\Module;
 use yii\bootstrap4\ActiveForm;
 use kartik\select2\Select2;
 use yii\bootstrap\Html;
-// use hesabro\trello\models\ProjectStatus;
+
 
 // $creatorIds = ProjectStatus::find()
 //     ->select('creator_id')
@@ -31,7 +31,7 @@ use yii\bootstrap\Html;
             </div>
              
             <?php $form = ActiveForm::Begin([
-                'method' => 'post',
+                'method' => 'get',
             ]) ?>
 
                 <div class="modal-body">
@@ -49,30 +49,24 @@ use yii\bootstrap\Html;
                             ?>
                         <!-- </div> -->
                         <div class="col-md-12">
-                            <?php
-                            echo '<label class="control-label">' . Module::t("module", "Members") . '</label>';
-                            echo Select2::widget([
-                                'name' => 'member_select',
+                            <?= $form->field($filterModel, 'member')->widget(Select2::classname(), [
                                 'data' => $memberData,
-                                'options' => [
-                                    'placeholder' => Module::t('module', 'Choice'),
-                                    'multiple' => true
+                                'options' => ['placeholder' => Module::t('module', 'Choice'),],
+                                'pluginOptions' => [
+                                    'allowClear' => true,
+                                    'multiple' => true,
                                 ],
-                            ]);
-                            ?>
+                            ]); ?>
                         </div>
                         <div class="col-md-12">
-                            <?php
-                            echo '<label class="control-label">' . Module::t("module", "Labels") . '</label>';
-                            echo Select2::widget([
-                                'name' => 'label_select',
+                            <?= $form->field($filterModel, 'label')->widget(Select2::classname(), [
                                 'data' => $labelData,
-                                'options' => [
-                                    'placeholder' => Module::t('module', 'Choice'),
-                                    'multiple' => true
+                                'options' => ['placeholder' => Module::t('module', 'Choice'),],
+                                'pluginOptions' => [
+                                    'allowClear' => true,
+                                    'multiple' => true,
                                 ],
-                            ]);    
-                            ?>
+                            ]); ?>
                         </div>
                     </div>
                 </div>

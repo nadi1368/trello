@@ -23,8 +23,7 @@ use hesabro\trello\Module;
         <ul class="connectedSortable" id="<?= 'tasks-ul-'.$status->id; ?>" data-status="<?= $status->id; ?>">
             <?= $this->render('_list_task',[
                 'status' => $status,
-                'member_select' => $member_select,
-                'label_select' => $label_select
+                'filterModel' => $filterModel,
             ]); ?>
         </ul>
         <footer>

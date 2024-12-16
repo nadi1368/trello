@@ -31,8 +31,7 @@ use yii\helpers\Html;
             'project' => $project,
             'statusesSearchModel' => $statusesSearchModel,
             'statusesdataProvider' => $statusesdataProvider,
-            'member_select' => $member_select,
-            'label_select' => $label_select,
+            'filterModel' => $filterModel,
         ]); ?>
     </div>
 
@@ -42,6 +41,7 @@ use yii\helpers\Html;
     <?= $this->render('_filter', [
         'project' => $project, 
         'model' => $statusesSearchModel,
+        'filterModel' => $filterModel,
         'memberData' => $memberData,
         'labelData' => $labelData,
     ]); ?>

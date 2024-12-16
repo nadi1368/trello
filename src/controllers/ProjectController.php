@@ -22,6 +22,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AjaxFilter;
 use hesabro\trello\models\Label;
 use hesabro\trello\models\TaskLabel;
+use hesabro\trello\models\FilterForm;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -70,13 +71,25 @@ class ProjectController extends Controller
      */
     public function actionIndex($p_id)
     {
+        $queryParams = Yii::$app->request->queryParams;
+
+        $filterModel = new FilterForm();
+
+        if (isset($queryParams['FilterForm']['member'])) {
+            $filterModel->member = $queryParams['FilterForm']['member'];
+        }
+
+        if (isset($queryParams['FilterForm']['label'])) {
+            $filterModel->label = $queryParams['FilterForm']['label'];
+        }
+
         $project=$this->findModel($p_id);
         
         $statusesSearchModel = new ProjectStatusSearch(['project_id' => $project->id, 'status' => ProjectStatus::STATUS_ACTIVE]);
-        $statusesdataProvider = $statusesSearchModel->search(Yii::$app->request->queryParams); 
+        $statusesdataProvider = $statusesSearchModel->search($queryParams); 
 
         $archiveStatusesSearchModel = new ProjectStatusSearch(['project_id' => $project->id, 'status' => ProjectStatus::STATUS_DELETED]);
-        $archiveStatusesDataProvider = $archiveStatusesSearchModel->search(Yii::$app->request->queryParams);
+        $archiveStatusesDataProvider = $archiveStatusesSearchModel->search($queryParams);
 
         return $this->render('index', [
             'project' => $project,
@@ -87,11 +100,9 @@ class ProjectController extends Controller
             'archiveStatusesSearchModel' => $archiveStatusesSearchModel,
             'archiveStatusesDataProvider' => $archiveStatusesDataProvider,
 
+            'filterModel' => $filterModel,
             'memberData' => $this->getMemberData(),
             'labelData' => $this->getLabelData(),
-
-            'member_select' => Yii::$app->request->isPost ? Yii::$app->request->post('member_select') : null,
-            'label_select' => Yii::$app->request->isPost ? Yii::$app->request->post('label_select') : null,
         ]);
     }
 

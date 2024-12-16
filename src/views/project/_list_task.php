@@ -7,7 +7,7 @@ use hesabro\trello\models\TaskLabel;
 use hesabro\trello\models\Comments;
 use hesabro\trello\Module;
 
-$tasks = $status->getProjectTasks()->active()->filterLabel($label_select)->filterMember($member_select)->orderBy('t_order')->all();
+$tasks = $status->getProjectTasks()->active()->filterLabel($filterModel->label)->filterMember($filterModel->member)->orderBy('t_order')->all();
 ?>
 <?php foreach($tasks as $index=>$model): ?>
 <li class="task"  id="<?= 'task_'.$model->id; ?>" data-index="<?= $index; ?>" data-ajax-url-move="<?= Url::to(['task/move', 'id'=>$model->id]) ?>" data-ajax-receive-url="<?= Url::to(['task/receive', 'id'=>$model->id]) ?>" data-ajax-url-view="<?= Url::to(['task/view', 'id'=>$model->id]) ?>">
