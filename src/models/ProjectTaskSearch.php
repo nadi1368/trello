@@ -2,7 +2,6 @@
 
 namespace hesabro\trello\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use hesabro\trello\models\ProjectTask;

@@ -33,7 +33,7 @@ class ProjectTaskQuery extends \yii\db\ActiveQuery
     }
     public function active()
     {
-        return $this->andWhere(['<>','status', ProjectTask::STATUS_DELETED]);
+        return $this->andWhere(['<>',ProjectTask::tableName().'.status', ProjectTask::STATUS_DELETED]);
     }
 
 
@@ -46,5 +46,15 @@ class ProjectTaskQuery extends \yii\db\ActiveQuery
     public function findByList($list_id)
     {
         return $this->andWhere('list_id=:ListId',[':ListId'=>$list_id]);
+    }
+
+    public function filterLabel($label_select)
+    {
+        return $this->joinWith('taskLabels')->andFilterWhere(['label_id' => $label_select]);
+    }
+
+    public function filterMember($member_select)
+    {
+        return $this->joinWith('taskAssignments')->andFilterWhere(['user_id' => $member_select]);
     }
 }

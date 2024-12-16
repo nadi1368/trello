@@ -12,11 +12,17 @@ use hesabro\trello\models\Team;
 use hesabro\trello\models\ProjectTeams;
 use hesabro\trello\models\TeamUsers;
 use Exception;
+use hesabro\trello\models\ProjectStatus;
+use hesabro\trello\models\ProjectStatusSearch;
+use hesabro\trello\models\TaskAssignment;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AjaxFilter;
+use hesabro\trello\models\Label;
+use hesabro\trello\models\TaskLabel;
+use hesabro\trello\models\FilterForm;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -65,17 +71,76 @@ class ProjectController extends Controller
      */
     public function actionIndex($p_id)
     {
+        $queryParams = Yii::$app->request->queryParams;
+
+        $filterModel = new FilterForm();
+
+        if (isset($queryParams['FilterForm']['member'])) {
+            $filterModel->member = $queryParams['FilterForm']['member'];
+        }
+
+        if (isset($queryParams['FilterForm']['label'])) {
+            $filterModel->label = $queryParams['FilterForm']['label'];
+        }
+
         $project=$this->findModel($p_id);
-        $statuses=$project->getProjectStatuses()->active()->orderBy('s_order')->all();// لیست های فعال
-        $archive_statuses=$project->getProjectStatuses()->deActive()->orderBy('s_order')->all(); // لیست های آرشیو شده
+        
+        $statusesSearchModel = new ProjectStatusSearch(['project_id' => $project->id, 'status' => ProjectStatus::STATUS_ACTIVE]);
+        $statusesdataProvider = $statusesSearchModel->search($queryParams); 
+
+        $archiveStatusesSearchModel = new ProjectStatusSearch(['project_id' => $project->id, 'status' => ProjectStatus::STATUS_DELETED]);
+        $archiveStatusesDataProvider = $archiveStatusesSearchModel->search($queryParams);
+
         return $this->render('index', [
             'project' => $project,
-            'statuses'=>$statuses,
-            'archive_statuses'=>$archive_statuses,
+
+            'statusesSearchModel' => $statusesSearchModel,
+            'statusesdataProvider' => $statusesdataProvider,
+
+            'archiveStatusesSearchModel' => $archiveStatusesSearchModel,
+            'archiveStatusesDataProvider' => $archiveStatusesDataProvider,
+
+            'filterModel' => $filterModel,
+            'memberData' => $this->getMemberData(),
+            'labelData' => $this->getLabelData(),
         ]);
     }
 
+    protected function getMemberData() 
+    {
+        $memberIds = TaskAssignment::find()
+            ->select('user_id')
+            ->column();
+    
+        $memberData = User::find()
+            ->select(['id', 'CONCAT(first_name, " " ,last_name) AS full_name'])
+            ->where(['id' => $memberIds])
+            ->indexBy('id')
+            ->asArray()
+            ->all();
+    
+        $memberData = array_map(fn($item) => $item['full_name'], $memberData);
 
+        return $memberData;
+    }
+
+    protected function getLabelData() 
+    {
+        $labelIds = TaskLabel::find()
+            ->select('label_id')
+            ->column();
+
+        $labelData = Label::find()
+            ->select(['id', 'label_name', 'color_code'])
+            ->where(['id' => $labelIds])
+            ->indexBy('id')
+            ->asArray()
+            ->all();
+
+        $labelData = array_map(fn($item) => $item['label_name'], $labelData);
+
+        return $labelData;
+    }
 
     /**
      * Creates a new Project model.

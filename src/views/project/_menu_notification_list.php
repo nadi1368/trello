@@ -1,5 +1,4 @@
 <?php
-use yii\helpers\Html;
 use hesabro\trello\models\Notifications;
 use hesabro\trello\Module;
 ?>

@@ -5,7 +5,6 @@ namespace hesabro\trello\controllers;
 use Yii;
 use hesabro\trello\models\Project;
 use hesabro\trello\models\ProjectStatus;
-use hesabro\trello\models\ProjectStatusSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

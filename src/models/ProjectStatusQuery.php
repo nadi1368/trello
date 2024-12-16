@@ -35,7 +35,7 @@ class ProjectStatusQuery extends \yii\db\ActiveQuery
 
     public function active()
     {
-        return $this->andWhere(['<>','status', ProjectStatus::STATUS_DELETED]);
+        return $this->andWhere(['<>', ProjectStatus::tableName().'.status', ProjectStatus::STATUS_DELETED]);
     }
 
 

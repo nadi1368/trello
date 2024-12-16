@@ -19,6 +19,9 @@
 return [
     'Activity' => 'فعالیت',
     'Activities' => 'فعالیت‌ها',
+    'Filter' => 'فیلتر',
+    'Reset' => 'بازنشانی',
+    'Close' => 'بستن',
     'Add Comment' => 'افزودن نظر',
     'Next' => 'بعد',
     'Previous' => 'قبل',
@@ -94,4 +97,6 @@ return [
     'View This Team' => 'مشاهده این تیم',
     'Watch' => 'پیگیری',
     'You are watching this card.' => 'شما در حال مشاهده این کارت هستید.',
+    'Choice' => 'انتخاب کنید',
+    'Labels' => 'برچسب ها',
 ];

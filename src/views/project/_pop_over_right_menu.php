@@ -1,12 +1,9 @@
 <?php
-
 use hesabro\trello\Module;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\Pjax;
 ?>
 
-<?php Pjax::begin(['id' => 'list-activites-pjax']); ?>
 <div id="pop-menu-menu" class="pop-over">
     <div class="pop-over-header js-pop-over-header">
         <span class="pop-over-header-title"><?= Module::t("module", "Menu") ?></span>
@@ -29,8 +26,6 @@ use yii\widgets\Pjax;
                 'data-toggle' => 'modal',
                 'data-target' => '#modal-pjax',
                 'data-url' => Url::to(['ajax-get-activities']),
-                // 'disabled' => true,
-                // 'data-reload-pjax-container' => 'list-activites-pjax',
             ]
         ); ?>
 

@@ -2,7 +2,6 @@
 
 namespace hesabro\trello\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use hesabro\trello\models\ProjectStatus;
@@ -41,7 +40,7 @@ class ProjectStatusSearch extends ProjectStatus
      */
     public function search($params)
     {
-        $query = ProjectStatus::find();
+        $query = ProjectStatus::find()->orderBy($this->s_order);
 
         // add conditions that should always apply here
 
