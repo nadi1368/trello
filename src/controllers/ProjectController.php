@@ -14,11 +14,14 @@ use hesabro\trello\models\TeamUsers;
 use Exception;
 use hesabro\trello\models\ProjectStatus;
 use hesabro\trello\models\ProjectStatusSearch;
+use hesabro\trello\models\TaskAssignment;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AjaxFilter;
+use hesabro\trello\models\Label;
+use hesabro\trello\models\TaskLabel;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -84,10 +87,49 @@ class ProjectController extends Controller
             'archiveStatusesSearchModel' => $archiveStatusesSearchModel,
             'archiveStatusesDataProvider' => $archiveStatusesDataProvider,
 
+            'memberData' => $this->getMemberData(),
+            'labelData' => $this->getLabelData(),
+
+            'member_select' => Yii::$app->request->isPost ? Yii::$app->request->post('member_select') : null,
             'label_select' => Yii::$app->request->isPost ? Yii::$app->request->post('label_select') : null,
         ]);
     }
 
+    protected function getMemberData() 
+    {
+        $memberIds = TaskAssignment::find()
+            ->select('user_id')
+            ->column();
+    
+        $memberData = User::find()
+            ->select(['id', 'CONCAT(first_name, " " ,last_name) AS full_name'])
+            ->where(['id' => $memberIds])
+            ->indexBy('id')
+            ->asArray()
+            ->all();
+    
+        $memberData = array_map(fn($item) => $item['full_name'], $memberData);
+
+        return $memberData;
+    }
+
+    protected function getLabelData() 
+    {
+        $labelIds = TaskLabel::find()
+            ->select('label_id')
+            ->column();
+
+        $labelData = Label::find()
+            ->select(['id', 'label_name', 'color_code'])
+            ->where(['id' => $labelIds])
+            ->indexBy('id')
+            ->asArray()
+            ->all();
+
+        $labelData = array_map(fn($item) => $item['label_name'], $labelData);
+
+        return $labelData;
+    }
 
     /**
      * Creates a new Project model.

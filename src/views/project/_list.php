@@ -21,7 +21,11 @@ use hesabro\trello\Module;
             <?= $this->render('_menu_header_list',['status' => $status]); ?>
         </header>
         <ul class="connectedSortable" id="<?= 'tasks-ul-'.$status->id; ?>" data-status="<?= $status->id; ?>">
-            <?= $this->render('_list_task',['status' => $status, 'label_select' => $label_select]); ?>
+            <?= $this->render('_list_task',[
+                'status' => $status,
+                'member_select' => $member_select,
+                'label_select' => $label_select
+            ]); ?>
         </ul>
         <footer>
             <a href="#" class="add-new-list" data-type="text" data-pk="<?= $status->id ?>" data-url="<?= Url::to(['task/create']); ?>" data-placement="right" data-title="<?= Module::t("module","Enter New Task Title") ?>"></a>

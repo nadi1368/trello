@@ -31,6 +31,7 @@ use yii\helpers\Html;
             'project' => $project,
             'statusesSearchModel' => $statusesSearchModel,
             'statusesdataProvider' => $statusesdataProvider,
+            'member_select' => $member_select,
             'label_select' => $label_select,
         ]); ?>
     </div>
@@ -38,6 +39,11 @@ use yii\helpers\Html;
     <?= $this->render('_modal'); ?>
     <?= $this->render('_pop_over_team',['project'=>$project]); ?>
     <?= $this->render('_pop_over_right_menu',['project'=>$project]); ?>
-    <?= $this->render('_filter', ['project' => $project, 'model' => $statusesSearchModel]); ?>
+    <?= $this->render('_filter', [
+        'project' => $project, 
+        'model' => $statusesSearchModel,
+        'memberData' => $memberData,
+        'labelData' => $labelData,
+    ]); ?>
 
 </div>

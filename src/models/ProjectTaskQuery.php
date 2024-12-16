@@ -47,4 +47,14 @@ class ProjectTaskQuery extends \yii\db\ActiveQuery
     {
         return $this->andWhere('list_id=:ListId',[':ListId'=>$list_id]);
     }
+
+    public function filterLabel($label_select)
+    {
+        return $this->joinWith('taskLabels')->andFilterWhere(['label_id' => $label_select]);
+    }
+
+    public function filterMember($member_select)
+    {
+        return $this->joinWith('taskAssignments')->andFilterWhere(['user_id' => $member_select]);
+    }
 }
